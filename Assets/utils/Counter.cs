@@ -4,35 +4,33 @@ namespace utils
 {
     public class Counter
     {
-        public float cycleTime;
-        public float countTime;
-        public bool trigger;
+        private float _cycleTime;
+        private float _countTime;
 
-        Counter(float cycleTime,float countTime)
+        public Counter(float cycleTime)
         {
-            this.countTime = countTime;
-            this.cycleTime = cycleTime;
-            trigger = false;
+            this._countTime = 0;
+            this._cycleTime = cycleTime;
+        }
+        public Counter(float cycleTime,float countTime)
+        {
+            this._countTime = countTime;
+            this._cycleTime = cycleTime;
         }
 
         public void Update()
         {
-            if (countTime >= cycleTime && !trigger )
+            if (_countTime < _cycleTime)
             {
-                countTime = 0;
-                trigger = true;
-            }
-            else
-            {
-                countTime += Time.deltaTime;
+                _countTime += Time.deltaTime;
             }
         }
 
         public bool IsTrigger()
         {
-            var result = trigger;
-            trigger = false;
-            return result;
+            if (!(_countTime >= _cycleTime)) return false;
+            _countTime = 0;
+            return true;
         }
     }
 }

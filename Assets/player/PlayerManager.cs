@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using utils;
 
 namespace player
 {
@@ -8,26 +9,40 @@ namespace player
         public float moveSpeed;
         private Rigidbody2D _rigidbody2D;
         public  GameObject message;
-        public  GameObject messageContainer;
+        private  GameObject _messageContainer;
+        private Counter _attackCounter;
+        public PlayerData playerData;
+        private float _messageSpeed;
 
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            messageContainer = new GameObject();
-            messageContainer.transform.name = "messageContainer";
+            _messageContainer = new GameObject
+            {
+                transform =
+                {
+                    name = "messageContainer"
+                }
+            };
+            _attackCounter = new Counter(playerData.attackTime);
+            _messageSpeed = playerData.messageSpeed;
         }
 
         private void FixedUpdate()
         {
+            _attackCounter.Update();
             MoveLogic();
             MessageShootLogic();
         }
 
         private void MessageShootLogic()
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (( Input.GetKey(KeyCode.Space) ||Input.GetMouseButton(0))&&
+                _attackCounter.IsTrigger())
             {
-                var newMwssage = Instantiate(message, transform.position, transform.rotation,messageContainer.transform);
+                var newMessage = Instantiate(message, transform.position, transform.rotation,_messageContainer.transform);
+                var dir = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+                newMessage.GetComponent<Rigidbody2D>().velocity = (dir.normalized)*_messageSpeed;
             }
         }
 
