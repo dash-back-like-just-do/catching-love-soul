@@ -7,6 +7,7 @@ namespace utils
     {
         public float attackTime;
         public float messageSpeed;
+        public float moveSpeed;
 
     }
 }
