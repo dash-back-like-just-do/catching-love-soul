@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackTime: 1
   messageSpeed: 2
+  moveSpeed: 10
+  rollTime: 1
+  rollCd: 2
+  rollDelay: 3
+  rollSpeed: 4
+  walkSpeed: 2

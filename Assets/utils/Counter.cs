@@ -4,26 +4,24 @@ namespace utils
 {
     public class Counter
     {
-        private float _cycleTime;
         private float _countTime;
+        private readonly float _cycleTime;
 
         public Counter(float cycleTime)
         {
-            this._countTime = 0;
-            this._cycleTime = cycleTime;
+            _countTime = 0;
+            _cycleTime = cycleTime;
         }
-        public Counter(float cycleTime,float countTime)
+
+        public Counter(float cycleTime, float countTime)
         {
-            this._countTime = countTime;
-            this._cycleTime = cycleTime;
+            _countTime = countTime;
+            _cycleTime = cycleTime;
         }
 
         public void Update()
         {
-            if (_countTime < _cycleTime)
-            {
-                _countTime += Time.deltaTime;
-            }
+            if (_countTime < _cycleTime) _countTime += Time.deltaTime;
         }
 
         public bool IsTrigger()
@@ -31,6 +29,11 @@ namespace utils
             if (!(_countTime >= _cycleTime)) return false;
             _countTime = 0;
             return true;
+        }
+
+        public void Reset()
+        {
+            _countTime = 0;
         }
     }
 }
