@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System;
-
+using UnityEngine;
 namespace GameCore.Basic
 {
     public class StateMachine
@@ -10,6 +10,10 @@ namespace GameCore.Basic
         public StateMachine(){
             _stateMap = new Dictionary<string, IState>();
         }
+        public void SetState(string state){
+            _currentState = _stateMap[state];
+            _currentState.OnEnter();
+        }
         public void ChangeState(string state,Action onComplete = null){
             IState newState = _stateMap[state];
             if(_currentState.Equals(_stateMap[state]))
@@ -18,6 +22,7 @@ namespace GameCore.Basic
             _currentState = newState;
             newState.OnEnter();
             newState.CallOnLeave(onComplete);
+            Debug.Log($"ChangeTo:{state}");
         }
         public void AddState(string stateName,IState state){
             _stateMap.Add(stateName,state);

@@ -28,7 +28,8 @@ namespace GameCore.Boss.core
         }
     }
     public class BossStateTag{
-        public static string Move = "Move";
+        public static string Move = "Move",
+                            Idle = "Idle";
 
     }
 }
