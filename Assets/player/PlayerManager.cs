@@ -29,6 +29,8 @@ namespace player
         private bool _canMove;
         private Counter _delay;
         private Vector2 _faceDir;
+
+        private Counter _hurtTimer;
         private GameObject _messageContainer;
         private float _messageSpeed;
         private PlayerFocus _playerFocus;
@@ -38,8 +40,10 @@ namespace player
 
         private Vector2 _rollDir;
         private Counter _rollTime;
+
         private SpriteRenderer _spriteRenderer;
 
+        // private bool _canHurt;
         private void Start()
         {
             _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -110,6 +114,8 @@ namespace player
                 case PlayerStatus.HURT:
                     _canMove = true;
                     _spriteRenderer.color = Color.red;
+                    _hurtTimer.Update();
+                    if (_hurtTimer.IsTrigger()) _playerStatus = PlayerStatus.IDLE;
                     //for animation
                     break;
                 case PlayerStatus.IDLE:
@@ -118,6 +124,13 @@ namespace player
                     _canMove = true;
 
                     RollingLogic();
+                    //tmp code
+                    if (Input.GetKey(KeyCode.H))
+                    {
+                        _playerStatus = PlayerStatus.HURT;
+                        _hurtTimer = new Counter(1);
+                    }
+
                     break;
                 case PlayerStatus.SHOOT:
                     _spriteRenderer.color = Color.blue;
@@ -134,6 +147,7 @@ namespace player
                     {
                         _delay = new Counter(playerData.rollDelay);
                         _playerStatus = PlayerStatus.DELAY;
+                        _rollCd.Reset(playerData.rollCd);
                     }
 
                     //move with some direction
@@ -153,7 +167,6 @@ namespace player
             // _canHurt = true;
             if (Input.GetKey(KeyCode.Space) && _rollCd.IsTrigger())
             {
-                _rollCd.Reset(playerData.rollCd);
                 _rollTime.Reset(playerData.rollTime);
                 _rollDir = _faceDir.normalized;
                 _playerStatus = PlayerStatus.ROLLING;
