@@ -5,7 +5,7 @@ namespace utils
     public class Counter
     {
         private float _countTime;
-        private readonly float _cycleTime;
+        private float _cycleTime;
 
         public Counter(float cycleTime)
         {
@@ -26,14 +26,23 @@ namespace utils
 
         public bool IsTrigger()
         {
-            if (!(_countTime >= _cycleTime)) return false;
-            _countTime = 0;
-            return true;
+            return _countTime >= _cycleTime;
         }
 
         public void Reset()
         {
             _countTime = 0;
+        }
+
+        public void Reset(float cycle)
+        {
+            _countTime = 0;
+            _cycleTime = cycle;
+        }
+
+        public void SetCycle(float cycle)
+        {
+            _cycleTime = cycle;
         }
     }
 }

@@ -21,20 +21,22 @@ namespace player
 
     public class PlayerManager : MonoBehaviour
     {
-        public float moveSpeed;
         public GameObject message;
         public PlayerData playerData;
 
         private Counter _attackCounter;
 
         private bool _canMove;
-        private Counter _Delay;
+        private Counter _delay;
+        private Vector2 _faceDir;
         private GameObject _messageContainer;
         private float _messageSpeed;
         private PlayerFocus _playerFocus;
         private PlayerStatus _playerStatus;
         private Rigidbody2D _rigidbody2D;
         private Counter _rollCd;
+
+        private Vector2 _rollDir;
         private Counter _rollTime;
         private SpriteRenderer _spriteRenderer;
 
@@ -52,20 +54,32 @@ namespace player
             _attackCounter = new Counter(playerData.attackTime);
             _rollCd = new Counter(playerData.rollCd);
             _messageSpeed = playerData.messageSpeed;
-            moveSpeed = playerData.moveSpeed;
             _rollTime = new Counter(playerData.rollTime);
-            _Delay = new Counter(playerData.rollDelay);
+            _delay = new Counter(playerData.rollDelay);
             _canMove = true;
+            _faceDir = Vector2.zero;
         }
 
         private void FixedUpdate()
         {
             _attackCounter.Update();
             _rollCd.Update();
+            UpdateFaceDir();
 
             MoveLogic();
             MessageShootLogic();
             UpdateStateMachine();
+        }
+
+        private void UpdateFaceDir()
+        {
+            var tmpDir = Vector2.zero;
+            if (Input.GetKey(KeyCode.A)) tmpDir += Vector2.left;
+            if (Input.GetKey(KeyCode.D)) tmpDir += Vector2.right;
+            if (Input.GetKey(KeyCode.W)) tmpDir += Vector2.up;
+            if (Input.GetKey(KeyCode.S)) tmpDir += Vector2.down;
+            if (tmpDir != Vector2.zero) _faceDir = tmpDir;
+            // [art]sprite change 
         }
 
         private void UpdateStateMachine()
@@ -88,9 +102,9 @@ namespace player
             {
                 case PlayerStatus.DELAY:
                     _canMove = false;
-                    _Delay.Update();
+                    _delay.Update();
                     _spriteRenderer.color = Color.yellow;
-                    if (_Delay.IsTrigger()) _playerStatus = PlayerStatus.IDLE;
+                    if (_delay.IsTrigger()) _playerStatus = PlayerStatus.IDLE;
                     break;
 
                 case PlayerStatus.HURT:
@@ -104,7 +118,6 @@ namespace player
                     _canMove = true;
 
                     RollingLogic();
-                    MoveLogic();
                     break;
                 case PlayerStatus.SHOOT:
                     _spriteRenderer.color = Color.blue;
@@ -115,12 +128,11 @@ namespace player
                     //rolling  some time
 
                     _canMove = true;
-                    MoveLogic();
                     _spriteRenderer.color = Color.green;
                     _rollTime.Update();
                     if (_rollTime.IsTrigger())
                     {
-                        _Delay = new Counter(playerData.rollDelay);
+                        _delay = new Counter(playerData.rollDelay);
                         _playerStatus = PlayerStatus.DELAY;
                     }
 
@@ -141,7 +153,9 @@ namespace player
             // _canHurt = true;
             if (Input.GetKey(KeyCode.Space) && _rollCd.IsTrigger())
             {
-                _rollTime.Reset();
+                _rollCd.Reset(playerData.rollCd);
+                _rollTime.Reset(playerData.rollTime);
+                _rollDir = _faceDir.normalized;
                 _playerStatus = PlayerStatus.ROLLING;
             }
             // _canHurt = false;
@@ -149,9 +163,10 @@ namespace player
 
         private void MessageShootLogic()
         {
-            if ((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0)) &&
+            if (Input.GetMouseButton(0) &&
                 _attackCounter.IsTrigger())
             {
+                _attackCounter.Reset(playerData.attackTime);
                 var newMessage = Instantiate(message, transform.position, transform.rotation,
                     _messageContainer.transform);
                 var dir = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
@@ -163,11 +178,18 @@ namespace player
         {
             if (!_canMove)
             {
-            _rigidbody2D.velocity = Vector2.zero;
+                _rigidbody2D.velocity = Vector2.zero;
+                return;
+            }
+
+            if (_playerStatus == PlayerStatus.ROLLING)
+            {
+                _rigidbody2D.velocity = _rollDir * playerData.rollSpeed;
                 return;
             }
 
             var deltaMove = Vector2.zero;
+            var moveSpeed = playerData.moveSpeed;
             if (Input.GetKey(KeyCode.A)) deltaMove.x -= moveSpeed;
             if (Input.GetKey(KeyCode.D)) deltaMove.x += moveSpeed;
             if (Input.GetKey(KeyCode.W)) deltaMove.y += moveSpeed;
