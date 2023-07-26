@@ -5,9 +5,11 @@ namespace GameCore.Boss.core
     public class BossState:IState
     {
         protected BossController _bossContext;
+        protected IStateMachineContext _stateMachine;
         protected Action _onComplete; 
-        public BossState(BossController bossContext){
+        public BossState(BossController bossContext,IStateMachineContext stateMachine){
             this._bossContext = bossContext;
+            this._stateMachine = stateMachine;
         }
         public virtual void OnEnter(){
 
@@ -29,7 +31,9 @@ namespace GameCore.Boss.core
     }
     public class BossStateTag{
         public static string Move = "Move",
-                            Idle = "Idle";
+                            Idle = "Idle",
+                            Attack = "Attack",
+                            Hurt = "Hurt";
 
     }
 }

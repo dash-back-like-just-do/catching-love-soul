@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6d8ec85dc3a1540ab32498e11a83ac, type: 3}
   m_Name: BossData
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
+  <MoveSpeed>k__BackingField: 3
+  <MoveDistance>k__BackingField: 0

@@ -757,6 +757,7 @@ GameObject:
   - component: {fileID: 1231378473}
   - component: {fileID: 1231378472}
   - component: {fileID: 1231378471}
+  - component: {fileID: 1231378475}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -779,6 +780,7 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 1231378472}
   _bossData: {fileID: 11400000, guid: 1b2e46e1173ebea4692dee380f466279, type: 2}
   dir: {x: 1, y: 0}
+  duration: 0
 --- !u!50 &1231378472
 Rigidbody2D:
   serializedVersion: 4
@@ -867,6 +869,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1231378475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231378470}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d5c0ce9acef8a4c9872ec179f9cd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1457379164
 GameObject:
   m_ObjectHideFlags: 0

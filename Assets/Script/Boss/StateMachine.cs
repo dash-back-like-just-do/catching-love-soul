@@ -3,15 +3,30 @@ using System;
 using UnityEngine;
 namespace GameCore.Basic
 {
-    public class StateMachine
+    public class StateMachine:IStateMachineContext
     {
         Dictionary<string,IState> _stateMap;
         IState _currentState;
+        IState _defaultState;
+        IState _nextState;
         public StateMachine(){
             _stateMap = new Dictionary<string, IState>();
         }
         public void SetState(string state){
             _currentState = _stateMap[state];
+        }
+        public void SetNextState(string state){
+            _nextState = _stateMap[state];
+        }
+        public void UnSetNextState(){
+            _nextState = null;
+        }
+        public void SetDefaultState(string state){
+            _defaultState = _stateMap[state];
+        }
+        public void Start(){
+            if(_currentState == null)
+                _currentState = _defaultState;
             _currentState.OnEnter();
         }
         public void ChangeState(string state,Action onComplete = null){
@@ -34,6 +49,16 @@ namespace GameCore.Basic
         public void OnFixUpdate(){
             _currentState.OnFixUpdate();
         }
+        public void MoveNextState(){
+            _currentState.OnLeave();
+            if(_nextState!=null){
+                _currentState = _nextState;
+                _nextState = null;
+            }
+            else
+                _currentState = _defaultState;
+            _currentState.OnEnter();
+        }
     }
     public interface IState{
         void OnEnter();
@@ -42,4 +67,8 @@ namespace GameCore.Basic
         void OnFixUpdate();
         void CallOnLeave(Action func);
     }
+    public interface IStateMachineContext{
+        void MoveNextState();
+    }
+    
 }
