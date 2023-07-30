@@ -12,6 +12,7 @@ namespace GameCore.Boss
     {
         [SerializeField] Rigidbody2D _rigidbody2D;
         [SerializeField] BossData _bossData;
+        [SerializeField] BossSummonSetting _summonSetting;
         StateMachine _stateMachine;
 
         Vector2 _moveDirection;
@@ -80,12 +81,13 @@ namespace GameCore.Boss
         }
         public void DoAttack()
         {
-            BossSummonHandller bossSummonHandller = new BossSummonHandller();
-            bossSummonHandller.Summon((BossSummonHandller.summonType)_attackType);
+            BossSummonHandller bossSummonHandller = new BossSummonHandller(_summonSetting);
+            bossSummonHandller.Summon((summonType)_attackType,transform.position);
         }
         #endregion
 
         #region Testing
+        [Header("Testing")]
         public Vector2 dir;
         public float duration;
         public void OnMoveTest()
@@ -95,6 +97,9 @@ namespace GameCore.Boss
         public void OnIdleTest()
         {
             _stateMachine.ChangeState(BossStateTag.Idle);
+        }
+        public void OnAttack(){
+            OnAttack(0,()=>{});
         }
         #endregion
     }
