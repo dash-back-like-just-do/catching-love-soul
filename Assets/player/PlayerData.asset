@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   attackTime: 1
-  messageSpeed: 2
-  moveSpeed: 10
-  rollTime: 1
-  rollCd: 2
-  rollDelay: 3
-  rollSpeed: 4
+  messageSpeed: 20
+  moveSpeed: 5
+  rollTime: 0.5
+  rollCd: 0.1
+  rollDelay: 0.1
+  rollSpeed: 10
   walkSpeed: 2
