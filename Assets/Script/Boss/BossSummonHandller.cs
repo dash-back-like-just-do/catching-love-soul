@@ -31,17 +31,21 @@ namespace GameCore.Boss.core
             while(points.MoveNext())
             {
                 SummonPoint currentPoint = points.Current;
-                SummonNewUnit(onPosition, prefab, currentPoint);
+                GameObject unit = SummonNewUnit(onPosition, prefab, currentPoint);
+                Rigidbody2D characterController;
+                if(unit.TryGetComponent<Rigidbody2D>(out characterController)){
+                    characterController.velocity = currentPoint.direction*_summonDictonary[type].speed;
+                }
             }
         }
 
-        private static void SummonNewUnit(Vector2 onPosition, GameObject prefab, SummonPoint currentPoint)
+        private GameObject SummonNewUnit(Vector2 onPosition, GameObject prefab, SummonPoint currentPoint)
         {
             Vector2 instalatePos = onPosition + currentPoint.relativePosition;
-            GameObject.Instantiate(
+            return GameObject.Instantiate(
                                 prefab,
                                 instalatePos,
-                                Quaternion.FromToRotation(instalatePos, currentPoint.direction));
+                                Quaternion.FromToRotation(instalatePos, Vector3.zero));
         }
     }
 }

@@ -6,6 +6,7 @@ namespace GameCore.Boss.core
         public summonType summonType;
         public GameObject prefab;
         public SummonPoint[] summonPoint;
+        public float speed;
     }
     [System.Serializable]
     public struct SummonPoint{

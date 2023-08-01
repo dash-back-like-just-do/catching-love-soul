@@ -696,7 +696,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1231378471}
         m_TargetAssemblyTypeName: GameCore.Boss.BossController, Assembly-CSharp
-        m_MethodName: OnIdleTest
+        m_MethodName: OnAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

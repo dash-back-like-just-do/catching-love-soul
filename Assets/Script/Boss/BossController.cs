@@ -55,8 +55,8 @@ namespace GameCore.Boss
         }
         public void OnAttack(int attackId, Action onComplete)
         {
-            _stateMachine.ChangeState(BossStateTag.Attack, onComplete);
             this._attackType = attackId;
+            _stateMachine.ChangeState(BossStateTag.Attack, onComplete);
 
         }
         #endregion
@@ -99,7 +99,7 @@ namespace GameCore.Boss
             _stateMachine.ChangeState(BossStateTag.Idle);
         }
         public void OnAttack(){
-            OnAttack(0,()=>{});
+            OnAttack(1,()=>{});
         }
         #endregion
     }

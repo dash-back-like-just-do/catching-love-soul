@@ -16,8 +16,24 @@ MonoBehaviour:
   - summonType: 0
     prefab: {fileID: 2052715777325192834, guid: 70d136636e83dad4b8d324d15af406ec, type: 3}
     summonPoint:
-    - relativePosition: {x: 1, y: 0}
+    - relativePosition: {x: 2, y: 0}
+      direction: {x: 0, y: 0}
+    - relativePosition: {x: -2, y: 0}
+      direction: {x: 0, y: 0}
+    - relativePosition: {x: 0, y: 2}
+      direction: {x: 0, y: 0}
+    - relativePosition: {x: 0, y: -2}
+      direction: {x: 0, y: 0}
+    speed: 0
+  - summonType: 1
+    prefab: {fileID: 2052715777325192834, guid: 607357d02a5b2dd43b8f016f42268eaf, type: 3}
+    summonPoint:
+    - relativePosition: {x: 2, y: 0}
       direction: {x: 1, y: 0}
-  - summonType: 0
-    prefab: {fileID: 0}
-    summonPoint: []
+    - relativePosition: {x: -2, y: 0}
+      direction: {x: -1, y: 0}
+    - relativePosition: {x: 0, y: 2}
+      direction: {x: 0, y: 1}
+    - relativePosition: {x: 0, y: -2}
+      direction: {x: 0, y: -1}
+    speed: 5
