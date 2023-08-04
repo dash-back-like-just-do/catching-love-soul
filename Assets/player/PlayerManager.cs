@@ -1,3 +1,4 @@
+using ChessClub;
 using UnityEngine;
 using utils;
 
@@ -19,7 +20,7 @@ namespace player
         NOT_FOCUS
     }
 
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : LoveGameObject
     {
         public GameObject message;
         public PlayerData playerData;

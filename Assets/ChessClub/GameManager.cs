@@ -1,4 +1,5 @@
 using UnityEngine;
+using utils;
 
 namespace ChessClub
 {
@@ -8,7 +9,7 @@ namespace ChessClub
         public GameObject bossPrefab;
         public GameData gameData;
         private GameObject _boss;
-        private GameObject _hpManager;
+        private HpManager _hpManager;
         private GameObject _player;
 
 
@@ -18,6 +19,7 @@ namespace ChessClub
             _boss = Instantiate(bossPrefab, gameData.bossInitPosition, transform.rotation);
 
             _player = Instantiate(playerPrefab, gameData.playerInitPosition, transform.rotation);
+            _hpManager = new HpManager();
         }
 
         // Update is called once per frame

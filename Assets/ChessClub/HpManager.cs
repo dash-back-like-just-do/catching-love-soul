@@ -1,16 +1,16 @@
+using System.Collections.Generic;
 using utils;
 
 namespace ChessClub
 {
+    
     public class HpManager
     {
-        private Ihp _boss;
-        private Ihp _player;
+        private List<Ihp> Ihps;
 
-        private HpManager(Ihp player, Ihp boss )
+        public void addNewIhp(Ihp i)
         {
-            _player = player;
-            _boss = boss;
+            Ihps.Add(i);
         }
     }
 }

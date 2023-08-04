@@ -4,6 +4,7 @@ using GameCore.Basic;
 using System;
 using GameCore.Boss.core;
 using System.Collections;
+using utils;
 
 namespace GameCore.Boss
 {
@@ -102,5 +103,6 @@ namespace GameCore.Boss
             OnAttack(1,()=>{});
         }
         #endregion
+
     }
 }
