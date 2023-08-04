@@ -20,7 +20,7 @@ namespace player
         NOT_FOCUS
     }
 
-    public class PlayerManager : LoveGameObject
+    public class PlayerManager :  LoveGameObject
     {
         public GameObject message;
         public PlayerData playerData;
@@ -183,6 +183,10 @@ namespace player
                 _attackCounter.Reset(playerData.attackTime);
                 var newMessage = Instantiate(message, transform.position, transform.rotation,
                     _messageContainer.transform);
+                newMessage.GetComponent<LoveMessage>()
+                    .SetHpManager(GetHpManager())
+                    .SetPlayerData(playerData)
+                    .SetExistTime(playerData.messageExistTime);
                 var dir = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
                 newMessage.GetComponent<Rigidbody2D>().velocity = dir.normalized * _messageSpeed;
             }

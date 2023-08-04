@@ -9,8 +9,11 @@ namespace ChessClub
 
         private float _hp;
         private HpManager _hpManager;
-        
-        
+
+        public HpManager GetHpManager( )
+        {
+            return _hpManager;
+        }
 
         public void SetHpManager(HpManager hpManager)
         {
@@ -21,6 +24,7 @@ namespace ChessClub
         public void Hurted(float damage)
         {
             _hp -= damage;
+            Debug.Log(_hp);
         }
 
         public void Heal(float heal)

@@ -20,6 +20,12 @@ namespace ChessClub
 
             _player = Instantiate(playerPrefab, gameData.playerInitPosition, transform.rotation);
             _hpManager = new HpManager();
+            var playerIhp = _player.GetComponent<Ihp>();
+                playerIhp.SetHpManager(_hpManager);
+                playerIhp.SetHp(gameData.playerInitHp);
+            var bossIhp = _boss.GetComponent<Ihp>();
+                bossIhp.SetHpManager(_hpManager);
+                bossIhp.SetHp(gameData.bossInitHp);
         }
 
         // Update is called once per frame
