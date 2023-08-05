@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f4bab602-40ce-4ba7-9682-5f0279ea06c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.catching-love-soul/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.catching-love-soul/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ChessClub/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ChessClub/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ChessClub.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ChessClub.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/player/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/PlayerManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/player/player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/player.prefab" afterDir="false" />
     </list>
@@ -117,7 +119,7 @@
       <workItem from="1691078844378" duration="714000" />
       <workItem from="1691080078608" duration="2002000" />
       <workItem from="1691158526754" duration="599000" />
-      <workItem from="1691226065276" duration="3185000" />
+      <workItem from="1691226065276" duration="4465000" />
     </task>
     <servers />
   </component>

@@ -26,6 +26,9 @@ namespace player
 
         private Counter _attackCounter;
 
+        private Camera _camera;
+        private Vector2 _cameraVelocity;
+
         private bool _canMove;
         private Counter _delay;
         private Vector2 _faceDir;
@@ -47,6 +50,7 @@ namespace player
         // private bool _canHurt;
         private void Start()
         {
+            _camera = Camera.main;
             _playerAnimation = transform.GetComponentInChildren<playerAnimation>();
             _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -75,6 +79,20 @@ namespace player
             MoveLogic();
             MessageShootLogic();
             UpdateStateMachine();
+            MoveCamera();
+        }
+
+        private void MoveCamera()
+        {
+            var position = _camera.transform.position;
+            var cameraNewPosition =
+                Vector2.SmoothDamp(
+                    position,
+                    transform.position,
+                    ref _cameraVelocity,
+                    1);
+            position = new Vector3(cameraNewPosition.x, cameraNewPosition.y, position.z);
+            _camera.transform.position = position;
         }
 
         private void UpdateFaceDir()
