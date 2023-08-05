@@ -1,9 +1,10 @@
+using ChessClub;
 using UnityEngine;
 
 namespace GameCore.Basic
 {
     
-    public class Entity : MonoBehaviour {
+    public class Entity : LoveGameObject {
     
     }
 }

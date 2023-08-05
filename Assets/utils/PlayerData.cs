@@ -14,5 +14,8 @@ namespace utils
 
         public float rollSpeed;
         public float walkSpeed;
+
+        public float strength;
+        public float messageExistTime;
     }
 }
