@@ -37,3 +37,15 @@ MonoBehaviour:
     - relativePosition: {x: 0, y: -2}
       direction: {x: 0, y: -1}
     speed: 5
+  - summonType: 2
+    prefab: {fileID: 2052715777325192834, guid: 607357d02a5b2dd43b8f016f42268eaf, type: 3}
+    summonPoint:
+    - relativePosition: {x: 2, y: 2}
+      direction: {x: 1, y: 0}
+    - relativePosition: {x: -2, y: -2}
+      direction: {x: -1, y: 0}
+    - relativePosition: {x: -2, y: 2}
+      direction: {x: 0, y: 1}
+    - relativePosition: {x: 2, y: -2}
+      direction: {x: 0, y: -1}
+    speed: 5

@@ -33,7 +33,8 @@ namespace GameCore.Boss.core
         public static string Move = "Move",
                             Idle = "Idle",
                             Attack = "Attack",
-                            Hurt = "Hurt";
+                            Hurt = "Hurt",
+                            Rush = "Rush";
 
     }
 }

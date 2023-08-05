@@ -1,4 +1,6 @@
+using System.Collections;
 using GameCore.Basic;
+using UnityEngine;
 
 namespace GameCore.Boss.core
 {
@@ -9,8 +11,12 @@ namespace GameCore.Boss.core
         }
         public override void OnEnter(){
             _bossContext.DoAttack();
+            _bossContext.StartCoroutine(Next());
         }
-
+        IEnumerator Next(){
+            yield return new WaitForSeconds(.5f);
+            _stateMachine.MoveNextState();
+        }
         public override void OnUpdate(){
 
         }

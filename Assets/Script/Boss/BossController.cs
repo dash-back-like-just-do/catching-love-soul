@@ -19,6 +19,7 @@ namespace GameCore.Boss
         float _moveDuration = 0;
         int _attackType = 0;
 
+        string currentState;
         private void Awake()
         {
             _stateMachine = new StateMachine();
@@ -26,6 +27,7 @@ namespace GameCore.Boss
             _stateMachine.AddState(BossStateTag.Move, new BossMoveState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Attack, new BossAttackState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Hurt, new BossHurtState(this, _stateMachine));
+            _stateMachine.AddState(BossStateTag.Rush, new BossMoveState(this, _stateMachine));
             _stateMachine.SetDefaultState(BossStateTag.Idle);
 
         }
@@ -36,6 +38,7 @@ namespace GameCore.Boss
         private void Update()
         {
             _stateMachine.OnUpdate();
+            currentState = _stateMachine.GetCurrentState();
         }
         private void FixedUpdate()
         {
@@ -58,6 +61,12 @@ namespace GameCore.Boss
             this._attackType = attackId;
             _stateMachine.ChangeState(BossStateTag.Attack, onComplete);
 
+        }
+        public void OnRush(Vector2 dir, Action onComplete, float sec = 0)
+        {
+            _moveDirection = dir;
+            _moveDuration = sec;
+            _stateMachine.ChangeState(BossStateTag.Rush, onComplete);
         }
         #endregion
         #region  actions
@@ -101,6 +110,8 @@ namespace GameCore.Boss
         public void OnAttack(){
             OnAttack(1,()=>{});
         }
+
+        
         #endregion
     }
 }

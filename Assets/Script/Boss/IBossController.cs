@@ -8,5 +8,6 @@ namespace GameCore.Boss
     {
         void OnAttack(int attackId, Action onComplete);
         void OnMove(Vector2 dir, Action onComplete, float sec = 0);
+        void OnRush(Vector2 dir, Action onComplete, float sec = 0);
     }
 }
