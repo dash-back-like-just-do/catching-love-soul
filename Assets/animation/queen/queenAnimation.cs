@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class queenAnimation : MonoBehaviour
 {
-    private GameObject front;
     public Animator QueenAni;
+    System.Action summondone;
     // Start is called before the first frame update
     void Start()
     {
-        front = gameObject.transform.GetChild(0).gameObject;
-        QueenAni = front.GetComponent<Animator>();
+        QueenAni = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Q))
+            PlayFloat();
+        
+        if (Input.GetKeyDown(KeyCode.E))
+            PlayRush();
 
     }
 
@@ -24,8 +28,9 @@ public class queenAnimation : MonoBehaviour
         QueenAni.SetInteger("Status", 0);
     }
 
-    public void PlaySummon()
+    public void PlaySummon(System.Action onComplete)
     {
+        summondone = onComplete;
         QueenAni.SetInteger("Status", 1);
     }
 
@@ -33,6 +38,10 @@ public class queenAnimation : MonoBehaviour
     {
         QueenAni.SetInteger("Status", 2);
     }
-
+    
+    public void SummonDone()
+    {
+        summondone();
+    }
 
 }
