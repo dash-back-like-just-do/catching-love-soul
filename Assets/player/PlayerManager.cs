@@ -112,12 +112,20 @@ namespace player
                 _playerFocus = PlayerFocus.FOCUS;
             else
                 _playerFocus = PlayerFocus.NOT_FOCUS;
-
+            float trash = 0;
             switch (_playerFocus)
             {
                 case PlayerFocus.NOT_FOCUS:
+                    _camera.orthographicSize =
+                        Mathf.SmoothDamp(_camera.orthographicSize,
+                            playerData.noFocusCameraSize, ref trash, playerData.scaleCameraTime);
+                    Debug.Log("nofocus");
                     break;
                 case PlayerFocus.FOCUS:
+                    _camera.orthographicSize =
+                        Mathf.SmoothDamp(_camera.orthographicSize,
+                            playerData.focusCameraSize, ref trash, playerData.scaleCameraTime);
+                    Debug.Log("focus");
                     break;
             }
 

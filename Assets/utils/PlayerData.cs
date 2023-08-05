@@ -17,5 +17,9 @@ namespace utils
 
         public float strength;
         public float messageExistTime;
+
+        public float focusCameraSize;
+        public float noFocusCameraSize;
+        public float scaleCameraTime;
     }
 }

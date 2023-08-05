@@ -5,7 +5,6 @@ namespace ChessClub
 {
     public class GameManager : MonoBehaviour
     {
-        public Camera camera;
         public GameObject playerPrefab;
         public GameObject bossPrefab;
         public GameData gameData;
@@ -30,6 +29,7 @@ namespace ChessClub
             var bossIhp = _boss.GetComponent<Ihp>();
             bossIhp.SetHpManager(_hpManager);
             bossIhp.SetHp(gameData.bossInitHp);
+            gameData.mapSize = _map.GetComponent<SpriteRenderer>().size;
         }
 
         // Update is called once per frame
