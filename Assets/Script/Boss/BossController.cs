@@ -29,7 +29,7 @@ namespace GameCore.Boss
             _stateMachine.AddState(BossStateTag.Move, new BossMoveState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Attack, new BossAttackState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Hurt, new BossHurtState(this, _stateMachine));
-            _stateMachine.AddState(BossStateTag.Rush, new BossMoveState(this, _stateMachine));
+            _stateMachine.AddState(BossStateTag.Rush, new BossRushState(this, _stateMachine));
             _stateMachine.SetDefaultState(BossStateTag.Idle);
 
         }
@@ -47,6 +47,9 @@ namespace GameCore.Boss
             _stateMachine.OnFixUpdate();
         }
         #region  interface
+        public void OnIdle(){
+            _stateMachine.ChangeState(BossStateTag.Idle);
+        }
         public void OnHurt(Action onComplete)
         {
             _stateMachine.ChangeState(BossStateTag.Hurt, onComplete);
@@ -56,6 +59,9 @@ namespace GameCore.Boss
         {
             _moveDirection = dir;
             _moveDuration = sec;
+            Transform transform = queenAnimation.transform;
+            TurnAround(transform);
+
             _stateMachine.ChangeState(BossStateTag.Move, onComplete);
         }
         public void OnAttack(int attackId, Action onComplete)
@@ -68,14 +74,30 @@ namespace GameCore.Boss
         {
             _moveDirection = dir;
             _moveDuration = sec;
-            _stateMachine.ChangeState(BossStateTag.Rush, onComplete);
+            Transform transform = queenAnimation.transform;
+            TurnAround(transform);
+
+            AnimationController.PlayRush();
+            StartCoroutine(waitForGetOn());
+            IEnumerator waitForGetOn()
+            {
+                yield return new WaitForSeconds(.62f);
+                _stateMachine.ChangeState(BossStateTag.Rush, onComplete);
+            }
+        }
+
+        private void TurnAround(Transform transform)
+        {
+            if (_moveDirection.x > 0)
+                transform.localScale = new Vector2(-1, transform.localScale.y);
+            else
+                transform.localScale = new Vector2(1, transform.localScale.y);
         }
         #endregion
         #region  actions
         public void DoMove(Action onComplete)
         {
             _rigidbody2D.velocity = _bossData.MoveSpeed * _moveDirection;
-
             if (_moveDuration > 0)
                 StartCoroutine(WatForComplete());
 

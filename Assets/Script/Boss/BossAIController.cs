@@ -58,11 +58,12 @@ namespace GameCore.Boss
             }
         }
         void RestartDecision(){
+            bossController.OnIdle();
             StartCoroutine(waitForNextLoop());
             IEnumerator waitForNextLoop(){
-                yield return new WaitForSeconds(1);
-                MakeDecision();
+                yield return new WaitForSeconds(3);
                 Debug.Log("restart");
+                MakeDecision();
             }
         }
         bool closeToPlayer(){
@@ -99,8 +100,8 @@ namespace GameCore.Boss
         void RushToPlayer(System.Action onComplete){
             Vector2 playerPos = player.position;
             Vector2 bossPos = transform.position;
-            float rushScale = .5f;
-            float rushSec = 1;
+            float rushScale = 2f;
+            float rushSec = 2;
             bossController.OnRush( 
                 new Vector2(playerPos.x-bossPos.x,playerPos.y-bossPos.y).normalized * rushScale,
                 onComplete,

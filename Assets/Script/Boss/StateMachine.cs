@@ -33,10 +33,12 @@ namespace GameCore.Basic
             IState newState = _stateMap[state];
             if(_currentState.Equals(_stateMap[state]))
                 return;
+            IState lastState = _currentState;
             _currentState.OnLeave();
-            _currentState = newState;
             newState.CallOnLeave(onComplete);
+            _currentState = newState;
             newState.OnEnter();
+            lastState.OnComplete();
             Debug.Log($"ChangeTo:{state}");
         }
         public void AddState(string stateName,IState state){
@@ -59,6 +61,8 @@ namespace GameCore.Basic
                 _currentState = _defaultState;
             lastState.OnLeave();
             _currentState.OnEnter();
+            Debug.Log($"ChangeTo:{GetCurrentState()}");
+            lastState.OnComplete();
         }
         public string GetCurrentState(){
             return _currentState.GetType().ToString();
@@ -70,6 +74,7 @@ namespace GameCore.Basic
         void OnUpdate();
         void OnFixUpdate();
         void CallOnLeave(Action func);
+        void OnComplete();
     }
     public interface IStateMachineContext{
         void MoveNextState();
