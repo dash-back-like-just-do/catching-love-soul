@@ -59,14 +59,14 @@ namespace GameCore.Boss
         {
             _moveDirection = dir;
             _moveDuration = sec;
-            Transform transform = queenAnimation.transform;
-            TurnAround(transform);
+            TurnAround(_moveDirection.x > 0);
 
             _stateMachine.ChangeState(BossStateTag.Move, onComplete);
         }
         public void OnAttack(int attackId, Action onComplete)
         {
             this._attackType = attackId;
+            
             _stateMachine.ChangeState(BossStateTag.Attack, onComplete);
 
         }
@@ -74,8 +74,8 @@ namespace GameCore.Boss
         {
             _moveDirection = dir;
             _moveDuration = sec;
-            Transform transform = queenAnimation.transform;
-            TurnAround(transform);
+            
+            TurnAround(_moveDirection.x > 0);
 
             AnimationController.PlayRush();
             StartCoroutine(waitForGetOn());
@@ -87,9 +87,10 @@ namespace GameCore.Boss
             }
         }
 
-        private void TurnAround(Transform transform)
+        public void TurnAround(bool faceToLeft)
         {
-            if (_moveDirection.x > 0)
+            Transform transform = queenAnimation.transform;
+            if (faceToLeft)
                 transform.localScale = new Vector2(-1, transform.localScale.y);
             else
                 transform.localScale = new Vector2(1, transform.localScale.y);

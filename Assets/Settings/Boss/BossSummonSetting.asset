@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   summonDatas:
   - summonType: 0
-    chess: {fileID: 0}
+    chess: {fileID: 5898380948029058713, guid: 70d136636e83dad4b8d324d15af406ec, type: 3}
     summonPoint:
     - relativePosition: {x: 2, y: 0}
       direction: {x: 1, y: 0}
-    speed: 0
   - summonType: 1
-    chess: {fileID: 0}
+    chess: {fileID: 7429438242708505084, guid: 607357d02a5b2dd43b8f016f42268eaf, type: 3}
     summonPoint:
     - relativePosition: {x: 2, y: 0}
       direction: {x: 1, y: 0}
@@ -30,16 +29,19 @@ MonoBehaviour:
       direction: {x: 0, y: 1}
     - relativePosition: {x: 0, y: -2}
       direction: {x: 0, y: -1}
-    speed: 5
   - summonType: 2
-    chess: {fileID: 0}
+    chess: {fileID: 5211019019061459253, guid: 53bb027eb30932841a20590fb48952ff, type: 3}
+    summonPoint:
+    - relativePosition: {x: 2, y: 2}
+      direction: {x: 0.5, y: 0.5}
+    - relativePosition: {x: -2, y: -2}
+      direction: {x: -0.5, y: -0.5}
+    - relativePosition: {x: -2, y: 2}
+      direction: {x: -0.5, y: 0.5}
+    - relativePosition: {x: 2, y: -2}
+      direction: {x: 0.5, y: -0.5}
+  - summonType: 3
+    chess: {fileID: 6069909251352547557, guid: 524991a3ffb4f68419edae6090c7381e, type: 3}
     summonPoint:
     - relativePosition: {x: 2, y: 2}
       direction: {x: 1, y: 0}
-    - relativePosition: {x: -2, y: -2}
-      direction: {x: -1, y: 0}
-    - relativePosition: {x: -2, y: 2}
-      direction: {x: 0, y: 1}
-    - relativePosition: {x: 2, y: -2}
-      direction: {x: 0, y: -1}
-    speed: 5

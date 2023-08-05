@@ -20,6 +20,7 @@ namespace GameCore.Boss
         public void MakeDecision(){
             if(currentState>=1){
                 if(closeToPlayer()){
+                    LookatPlayer();
                     bossController.OnAttack(0,()=>{
                         MoveToPlayer(()=>{
                             if(currentState==3){
@@ -80,6 +81,12 @@ namespace GameCore.Boss
                 (- new Vector2(playerPos.x-bossPos.x,playerPos.y-bossPos.y)).normalized,
                 onComplete,
                 Vector2.Distance(playerPos,bossPos)*moveSecScale);
+        }
+        void LookatPlayer(){
+            Vector2 playerPos = player.position;
+            Vector2 bossPos = transform.position;
+            Vector2 direction =new Vector2(playerPos.x-bossPos.x,playerPos.y-bossPos.y).normalized;
+            bossController.TurnAround(direction.x>0);
         }
         void MoveToPlayer(System.Action onComplete){
             Vector2 playerPos = player.position;

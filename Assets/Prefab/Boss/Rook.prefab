@@ -120,4 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 5362750657316374253}
-  speed: 2
+  speed: 8
+  awakeTime: 1
