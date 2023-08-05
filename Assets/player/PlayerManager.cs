@@ -9,7 +9,6 @@ namespace player
         DELAY,
         IDLE,
         ROLLING,
-        WALKING,
         SHOOT,
         HURT
     }
@@ -20,7 +19,7 @@ namespace player
         NOT_FOCUS
     }
 
-    public class PlayerManager :  LoveGameObject
+    public class PlayerManager : LoveGameObject
     {
         public GameObject message;
         public PlayerData playerData;
@@ -34,6 +33,7 @@ namespace player
         private Counter _hurtTimer;
         private GameObject _messageContainer;
         private float _messageSpeed;
+        private playerAnimation _playerAnimation;
         private PlayerFocus _playerFocus;
         private PlayerStatus _playerStatus;
         private Rigidbody2D _rigidbody2D;
@@ -47,6 +47,7 @@ namespace player
         // private bool _canHurt;
         private void Start()
         {
+            _playerAnimation = transform.GetComponentInChildren<playerAnimation>();
             _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _messageContainer = new GameObject
@@ -110,6 +111,7 @@ namespace player
                     _delay.Update();
                     _spriteRenderer.color = Color.yellow;
                     if (_delay.IsTrigger()) _playerStatus = PlayerStatus.IDLE;
+
                     break;
 
                 case PlayerStatus.HURT:
@@ -132,6 +134,11 @@ namespace player
                         _hurtTimer = new Counter(1);
                     }
 
+                    if (_rigidbody2D.velocity != Vector2.zero)
+                        _playerAnimation.PlayWalk();
+                    else
+                        _playerAnimation.PlayIdle();
+
                     break;
                 case PlayerStatus.SHOOT:
                     _spriteRenderer.color = Color.blue;
@@ -141,6 +148,7 @@ namespace player
                 case PlayerStatus.ROLLING: //i think it will be a block state but can move 
                     //rolling  some time
 
+                    _playerAnimation.PlayRoll();
                     _canMove = true;
                     _spriteRenderer.color = Color.green;
                     _rollTime.Update();
@@ -154,25 +162,17 @@ namespace player
                     //move with some direction
                     //delay some time and go back idle
                     break;
-                case PlayerStatus.WALKING:
-                    _spriteRenderer.color = Color.grey;
-                    _canMove = true;
-                    RollingLogic();
-                    //for animation
-                    break;
             }
         }
 
         private void RollingLogic()
         {
-            // _canHurt = true;
             if (Input.GetKey(KeyCode.Space) && _rollCd.IsTrigger())
             {
                 _rollTime.Reset(playerData.rollTime);
                 _rollDir = _faceDir.normalized;
                 _playerStatus = PlayerStatus.ROLLING;
             }
-            // _canHurt = false;
         }
 
         private void MessageShootLogic()

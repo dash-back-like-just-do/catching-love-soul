@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f4bab602-40ce-4ba7-9682-5f0279ea06c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.catching-love-soul/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.catching-love-soul/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/player/PlayerData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/PlayerData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/player/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/PlayerManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/player/player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/player.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,19 +24,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/GameData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/GameData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/HpManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/HpManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/LoveGameObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/LoveGameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Title/TitleFunction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/player/Message/LoveMessage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/player/Mouse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/player/PlayerManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/player/PlayerData.asset" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/player/player.prefab" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/player/player.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/utils/Ihp.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/utils/PlayerData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualscripting@1.8.0/Editor/VisualScripting.Core/Documentation/XmlDocumentation.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/ProjectSettings/TagManager.asset" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -58,7 +56,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "rider.code.cleanup.on.save": "true",
+    "settings.editor.selected.configurable": "actions.on.save",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -118,6 +117,7 @@
       <workItem from="1691078844378" duration="714000" />
       <workItem from="1691080078608" duration="2002000" />
       <workItem from="1691158526754" duration="599000" />
+      <workItem from="1691226065276" duration="3185000" />
     </task>
     <servers />
   </component>
