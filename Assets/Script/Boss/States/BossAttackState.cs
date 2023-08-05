@@ -11,15 +11,14 @@ namespace GameCore.Boss.core
         }
         public override void OnEnter(){
             
-            _bossContext.AnimationController.PlaySummon();
-            _bossContext.StartCoroutine(Next());
+            _bossContext.AnimationController.PlaySummon(()=>{
+                _stateMachine.MoveNextState();
+            });
+            _bossContext.StartCoroutine(DelayAttack());
         }
-        IEnumerator Next(){
+        IEnumerator DelayAttack(){
             yield return new WaitForSeconds(.3f);
             _bossContext.DoAttack();
-            yield return new WaitForSeconds(1f);
-
-            _stateMachine.MoveNextState();
         }
         public override void OnUpdate(){
 
