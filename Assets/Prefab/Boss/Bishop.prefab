@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3464573010583142204}
   - component: {fileID: 8287533895363272207}
   - component: {fileID: 5362750657316374253}
+  - component: {fileID: 7429438242708505084}
   m_Layer: 0
   m_Name: Bishop
   m_TagString: Untagged
@@ -106,3 +107,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7429438242708505084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052715777325192834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec19571352ccce14fad432ae14231843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody2D: {fileID: 5362750657316374253}
+  speed: 8
+  awakeTime: 1

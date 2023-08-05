@@ -9,6 +9,7 @@ namespace GameCore.Boss.core
             
         }
         public override void OnEnter(){
+            _bossContext.AnimationController.PlayFloat();
             _bossContext.DoMove(()=>{
                 _stateMachine.MoveNextState();
             });

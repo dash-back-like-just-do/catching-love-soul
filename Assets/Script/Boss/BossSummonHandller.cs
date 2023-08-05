@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using GameCore.Boss.ChessSpace;
 using UnityEngine;
 namespace GameCore.Boss.core
 {
@@ -26,24 +27,21 @@ namespace GameCore.Boss.core
 
         public void Summon(summonType type,Vector2 onPosition){
 
-            GameObject prefab = _summonDictonary[type].prefab;
+            Chess chess = _summonDictonary[type].chess;
             IEnumerator<SummonPoint> points =  _summonDictonary[type].summonPoint.AsEnumerable().GetEnumerator();
             while(points.MoveNext())
             {
                 SummonPoint currentPoint = points.Current;
-                GameObject unit = SummonNewUnit(onPosition, prefab, currentPoint);
-                Rigidbody2D characterController;
-                if(unit.TryGetComponent<Rigidbody2D>(out characterController)){
-                    characterController.velocity = currentPoint.direction*_summonDictonary[type].speed;
-                }
+                Chess unit = SummonNewUnit(onPosition, chess, currentPoint);
+                unit.OnSpawn(currentPoint.direction);
             }
         }
 
-        private GameObject SummonNewUnit(Vector2 onPosition, GameObject prefab, SummonPoint currentPoint)
+        private Chess SummonNewUnit(Vector2 onPosition, Chess chess, SummonPoint currentPoint)
         {
             Vector2 instalatePos = onPosition + currentPoint.relativePosition;
-            return GameObject.Instantiate(
-                                prefab,
+            return Object.Instantiate(
+                                chess,
                                 instalatePos,
                                 Quaternion.FromToRotation(instalatePos, Vector3.zero));
         }

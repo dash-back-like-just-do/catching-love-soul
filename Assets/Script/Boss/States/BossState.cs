@@ -15,15 +15,20 @@ namespace GameCore.Boss.core
 
         }
         public virtual void OnLeave(){
-            if(_onComplete!=null)
-                _onComplete();
-            _onComplete = null;
+            
         }
         public virtual void OnUpdate(){
 
         }
         public virtual void OnFixUpdate(){
 
+        }
+        public virtual void OnComplete(){
+            Action tmp = _onComplete;
+            if(_onComplete!=null){
+                _onComplete = null;
+                tmp();
+            }
         }
         public virtual void CallOnLeave(Action func){
             _onComplete = func;
@@ -33,7 +38,8 @@ namespace GameCore.Boss.core
         public static string Move = "Move",
                             Idle = "Idle",
                             Attack = "Attack",
-                            Hurt = "Hurt";
+                            Hurt = "Hurt",
+                            Rush = "Rush";
 
     }
 }
