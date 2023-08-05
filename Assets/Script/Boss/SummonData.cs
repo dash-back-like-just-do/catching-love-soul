@@ -1,12 +1,12 @@
+using GameCore.Boss.ChessSpace;
 using UnityEngine;
 namespace GameCore.Boss.core
 {
     [System.Serializable]
     public struct SummonData{
         public summonType summonType;
-        public GameObject prefab;
+        public Chess chess;
         public SummonPoint[] summonPoint;
-        public float speed;
     }
     [System.Serializable]
     public struct SummonPoint{

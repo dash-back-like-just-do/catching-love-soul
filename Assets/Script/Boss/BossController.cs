@@ -79,6 +79,7 @@ namespace GameCore.Boss
 
             AnimationController.PlayRush();
             StartCoroutine(waitForGetOn());
+            //delay translate to rush
             IEnumerator waitForGetOn()
             {
                 yield return new WaitForSeconds(.62f);

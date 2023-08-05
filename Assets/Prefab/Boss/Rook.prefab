@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3464573010583142204}
   - component: {fileID: 8287533895363272207}
   - component: {fileID: 5362750657316374253}
-  - component: {fileID: 7429438242708505084}
+  - component: {fileID: 5211019019061459253}
   m_Layer: 0
-  m_Name: Bishop
+  m_Name: Rook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6d64c5e9c3855f245ae672a6f7bf50bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ae3393d4b846ec428fe8aa1c0d33e38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7429438242708505084
+--- !u!114 &5211019019061459253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2052715777325192834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec19571352ccce14fad432ae14231843, type: 3}
+  m_Script: {fileID: 11500000, guid: a4418fb6f7adf3c49b98b1a80ea87829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 5362750657316374253}

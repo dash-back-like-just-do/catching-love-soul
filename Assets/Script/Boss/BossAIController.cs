@@ -20,10 +20,10 @@ namespace GameCore.Boss
         public void MakeDecision(){
             if(currentState>=1){
                 if(closeToPlayer()){
-                    bossController.OnAttack(1,()=>{
+                    bossController.OnAttack(0,()=>{
                         MoveToPlayer(()=>{
                             if(currentState==3){
-                                bossController.OnAttack(3,()=>{
+                                bossController.OnAttack(2,()=>{
                                     //back to idle
                                     RestartDecision();
                                 });
@@ -38,7 +38,7 @@ namespace GameCore.Boss
                 else{
                     MoveRandomly(()=>{
                         if(currentState >= 2){
-                            bossController.OnAttack(2,()=>{
+                            bossController.OnAttack(1,()=>{
                                 MoveAwayFromPlayer(()=>{
                                     RushToPlayer(()=>{
                                         //back to idle
