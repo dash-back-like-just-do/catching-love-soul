@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f4bab602-40ce-4ba7-9682-5f0279ea06c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.catching-love-soul/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.catching-love-soul/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ChessClub/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ChessClub/GameData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ChessClub/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ChessClub/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ChessClub/HpManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ChessClub/HpManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ChessClub/LoveGameObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ChessClub/LoveGameObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Boss/boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Boss/boss.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/player/Message/LoveMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/Message/LoveMessage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/player/Message/message.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/Message/message.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/player/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/PlayerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/utils/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/utils/PlayerData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/player/PlayerData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/player/PlayerData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +24,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/GameData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/GameData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/HpManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/HpManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/ChessClub/LoveGameObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ChessClub/LoveGameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Title/TitleFunction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/player/Message/LoveMessage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/player/Mouse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/player/PlayerManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/utils/Ihp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/green-rider/code/unity/catching-love-soul/Assets/utils/PlayerData.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
