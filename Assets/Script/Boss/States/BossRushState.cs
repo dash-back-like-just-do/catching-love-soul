@@ -3,13 +3,13 @@ using GameCore.Basic;
 namespace GameCore.Boss.core
 {
 
-    public class BossMoveState:BossState
+    public class BossRushState:BossState
     {
-        public BossMoveState(BossController bossContext,IStateMachineContext stateMachine) : base(bossContext,stateMachine){
+        public BossRushState(BossController bossContext,IStateMachineContext stateMachine) : base(bossContext,stateMachine){
             
         }
         public override void OnEnter(){
-            _bossContext.AnimationController.PlayFloat();
+            _bossContext.AnimationController.PlayRush();
             _bossContext.DoMove(()=>{
                 _stateMachine.MoveNextState();
             });

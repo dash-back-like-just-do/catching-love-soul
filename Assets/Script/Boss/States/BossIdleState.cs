@@ -10,7 +10,7 @@ namespace GameCore.Boss.core
             
         }
         public override void OnEnter(){
-
+            
         }
 
         public override void OnUpdate(){

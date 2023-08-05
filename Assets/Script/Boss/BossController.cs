@@ -13,12 +13,14 @@ namespace GameCore.Boss
         [SerializeField] Rigidbody2D _rigidbody2D;
         [SerializeField] BossData _bossData;
         [SerializeField] BossSummonSetting _summonSetting;
+        [SerializeField] queenAnimation queenAnimation;
         StateMachine _stateMachine;
 
         Vector2 _moveDirection;
         float _moveDuration = 0;
         int _attackType = 0;
 
+        public queenAnimation AnimationController => queenAnimation;
         string currentState;
         private void Awake()
         {
