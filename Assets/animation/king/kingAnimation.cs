@@ -17,12 +17,12 @@ public class kingAnimation : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.A))
-            PlayFloat();
+            PlayIdle();
         if (Input.GetKeyDown(KeyCode.S))
             PlaySwing();
     }
 
-    public void PlayFloat()
+    public void PlayIdle()
     {
         QueenAni.SetInteger("Status", 0);
     }

@@ -10,7 +10,7 @@ namespace GameCore.Boss.core
             
         }
         public override void OnEnter(){
-
+            _bossContext.AnimationController.PlayFloat();
         }
 
         public override void OnUpdate(){
