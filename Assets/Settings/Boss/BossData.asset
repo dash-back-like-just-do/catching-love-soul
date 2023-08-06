@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6d8ec85dc3a1540ab32498e11a83ac, type: 3}
   m_Name: BossData
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 3
+  <MoveSpeed>k__BackingField: 5
   <HurtFreezeTime>k__BackingField: 0.5
   <RushDamage>k__BackingField: 2
   <Damage>k__BackingField: 1
