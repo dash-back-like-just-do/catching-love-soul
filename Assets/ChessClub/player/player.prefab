@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8612253052592179671}
   - component: {fileID: 8612253052592179668}
   - component: {fileID: 8612253052592179670}
+  - component: {fileID: 3081181892109563007}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: {fileID: 6653226983979535772, guid: cd1bee8f5a90db08b9c37854af22aa7c, type: 3}
   playerData: {fileID: 11400000, guid: aef6479f4a1ae5d1d91581a9b7f481db, type: 2}
+  heartSprite: {fileID: 21300000, guid: 37e46dbc59c7fc94f8ece2d661a36221, type: 3}
+  loveSprite: {fileID: 21300000, guid: e1d42235d9e702d4cba303b5f4fed562, type: 3}
 --- !u!50 &8612253052592179670
 Rigidbody2D:
   serializedVersion: 4
@@ -70,7 +73,23 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &3081181892109563007
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612253052592179669}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &8612253053804447750
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +165,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dce95c6e176069c40baf378b48a889eb, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

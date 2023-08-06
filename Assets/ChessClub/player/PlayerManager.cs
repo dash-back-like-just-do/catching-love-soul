@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ChessClub;
+using Unity.Mathematics;
 using UnityEngine;
 using utils;
 
@@ -49,9 +50,18 @@ namespace player
 
         private SpriteRenderer _spriteRenderer;
 
-        // private bool _canHurt;
+        private float _moveSpeed ;
+        private Vector3 _messageScale ;
+
+        public Sprite heartSprite;
+        public Sprite loveSprite;
+        private float _messageExistTime;
+
+            // private bool _canHurt;
         private void Start()
         {
+            _messageExistTime = playerData.messageExistTime;
+            _moveSpeed = playerData.moveSpeed;
             _camera = Camera.main;
             _playerAnimation = transform.GetComponentInChildren<playerAnimation>();
             _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -111,12 +121,24 @@ namespace player
             {
                 _inputDirs[Vector2.left].Reset();
                 _inputDirs[Vector2.right].Reset(playerData.dashDirKeyTime,playerData.dashDirKeyTime);
+                if (_playerStatus != PlayerStatus.ROLLING && _playerStatus != PlayerStatus.DELAY)
+                {
+                    var rotation = transform.rotation;
+                    rotation.y =0;
+                    transform.rotation = rotation;
+                }
             }
 
             if (Input.GetKey(KeyCode.D))
             {
                 _inputDirs[Vector2.right].Reset();
                 _inputDirs[Vector2.left].Reset(playerData.dashDirKeyTime,playerData.dashDirKeyTime);
+                if (_playerStatus != PlayerStatus.ROLLING)
+                {
+                    var rotation = transform.rotation;
+                    rotation.y = 180;
+                    transform.rotation = rotation;
+                }
             }
 
             if (Input.GetKey(KeyCode.W))
@@ -144,14 +166,21 @@ namespace player
                 case PlayerFocus.NOT_FOCUS:
                     _camera.orthographicSize =
                         Mathf.SmoothDamp(_camera.orthographicSize,
-                            playerData.noFocusCameraSize, ref trash, playerData.scaleCameraTime);
-                    Debug.Log("nofocus");
+                            playerData.noFocusCameraSize, ref trash, playerData.notFocusScaleCameraTime);
+                    _moveSpeed = playerData.moveSpeed;
+                    _messageScale = new Vector3(1,1,1);
+                    _messageExistTime = playerData.messageExistTime;
                     break;
                 case PlayerFocus.FOCUS:
+                    _messageExistTime =playerData.messageExistTime+((_camera.orthographicSize-playerData.noFocusCameraSize) /
+                                                                      (playerData.focusCameraSize - playerData.noFocusCameraSize));
                     _camera.orthographicSize =
                         Mathf.SmoothDamp(_camera.orthographicSize,
-                            playerData.focusCameraSize, ref trash, playerData.scaleCameraTime);
-                    Debug.Log("focus");
+                            playerData.focusCameraSize, ref trash, playerData.focusScaleCameraTime);
+                    _moveSpeed = playerData.moveSpeed*((playerData.focusCameraSize -_camera.orthographicSize) /(playerData.focusCameraSize-playerData.noFocusCameraSize));
+                    var tmpScale=playerData.heartInitScale+((_camera.orthographicSize-playerData.noFocusCameraSize) /
+                                                                      (playerData.focusCameraSize - playerData.noFocusCameraSize));
+                    _messageScale = new Vector3(tmpScale,tmpScale,1);
                     break;
             }
 
@@ -159,6 +188,8 @@ namespace player
             switch (_playerStatus)
             {
                 case PlayerStatus.DELAY:
+                    
+                    _playerAnimation.PlayIdle();
                     _canMove = false;
                     _delay.Update();
                     _spriteRenderer.color = Color.yellow;
@@ -196,6 +227,10 @@ namespace player
                     _spriteRenderer.color = Color.blue;
                     //shoot message
                     //delay some time and go back idle
+                    _playerAnimation.PlayAttack();
+                    _delay = new Counter(playerData.shootDelay);
+                    _playerStatus = PlayerStatus.DELAY;
+                     _rollCd.Reset(playerData.rollCd);
                     break;
                 case PlayerStatus.ROLLING: //i think it will be a block state but can move 
                     //rolling  some time
@@ -243,14 +278,24 @@ namespace player
                 _attackCounter.IsTrigger())
             {
                 _attackCounter.Reset(playerData.attackTime);
-                var newMessage = Instantiate(message, transform.position, transform.rotation,
+                var dir = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                var newMessage = Instantiate(message, transform.position+(Vector3) dir/2, transform.rotation,
                     _messageContainer.transform);
                 newMessage.GetComponent<LoveMessage>()
                     .SetHpManager(GetHpManager())
                     .SetPlayerData(playerData)
                     .SetExistTime(playerData.messageExistTime);
-                var dir = (Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
                 newMessage.GetComponent<Rigidbody2D>().velocity = dir.normalized * _messageSpeed;
+                newMessage.transform.localScale = _messageScale;
+                if (_playerFocus == PlayerFocus.FOCUS)
+                {
+                    newMessage.GetComponent<SpriteRenderer>().sprite = heartSprite;
+                }
+                else
+                {
+                    newMessage.GetComponent<SpriteRenderer>().sprite = loveSprite;
+                }
+                _playerStatus = PlayerStatus.SHOOT;
             }
         }
 
@@ -269,11 +314,10 @@ namespace player
             }
 
             var deltaMove = Vector2.zero;
-            var moveSpeed = playerData.moveSpeed;
-            if (Input.GetKey(KeyCode.A)) deltaMove.x -= moveSpeed;
-            if (Input.GetKey(KeyCode.D)) deltaMove.x += moveSpeed;
-            if (Input.GetKey(KeyCode.W)) deltaMove.y += moveSpeed;
-            if (Input.GetKey(KeyCode.S)) deltaMove.y -= moveSpeed;
+            if (Input.GetKey(KeyCode.A)) deltaMove.x -= _moveSpeed;
+            if (Input.GetKey(KeyCode.D)) deltaMove.x += _moveSpeed;
+            if (Input.GetKey(KeyCode.W)) deltaMove.y += _moveSpeed;
+            if (Input.GetKey(KeyCode.S)) deltaMove.y -= _moveSpeed;
 
             _rigidbody2D.velocity = deltaMove;
         }
