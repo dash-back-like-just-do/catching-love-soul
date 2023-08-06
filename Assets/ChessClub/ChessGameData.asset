@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChessGameData
   m_EditorClassIdentifier: 
   playerInitPosition: {x: 0, y: 0}
-  playerInitHp: 6
+  playerInitHp: 3
   bossInitPosition: {x: 0, y: 5}
   bossInitHp: 200
   mapCenter: {x: 0, y: 0}

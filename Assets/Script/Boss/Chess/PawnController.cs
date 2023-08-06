@@ -33,7 +33,7 @@ public class PawnController : Chess {
     void OnComplete(){
         
         DOTween.ToAlpha(()=>spriteRenderer.color,x=>spriteRenderer.color=x,0,destoryTime).OnUpdate(()=>{
-            if(spriteRenderer.color.a<=0.7)
+            if(spriteRenderer.color.a<=0.4)
                 collider2D.enabled = false;
         }).OnComplete(()=>{
             Destroy(gameObject);
