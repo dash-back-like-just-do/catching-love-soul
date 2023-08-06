@@ -6,6 +6,7 @@ TagManager:
   tags:
   - women
   - GameManager
+  - wall
   layers:
   - Default
   - TransparentFX

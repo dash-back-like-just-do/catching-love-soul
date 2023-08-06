@@ -56,16 +56,21 @@ namespace player
         public Sprite heartSprite;
         public Sprite loveSprite;
         private float _messageExistTime;
+        private Collider2D _collider2D;
+        private bool touchWall;
+        
 
             // private bool _canHurt;
         private void Start()
         {
+            touchWall = false;
             _messageExistTime = playerData.messageExistTime;
             _moveSpeed = playerData.moveSpeed;
             _camera = Camera.main;
             _playerAnimation = transform.GetComponentInChildren<playerAnimation>();
             _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _collider2D = GetComponent<Collider2D>();
             _messageContainer = new GameObject
             {
                 transform =
@@ -97,7 +102,6 @@ namespace player
             UpdateFaceDir();
 
             MoveLogic();
-            MessageShootLogic();
             UpdateStateMachine();
             MoveCamera();
         }
@@ -208,7 +212,7 @@ namespace player
                     //for animation
                     _spriteRenderer.color = Color.white;
                     _canMove = true;
-
+                    MessageShootLogic();
                     RollingLogic();
                     //tmp code
                     if (Input.GetKey(KeyCode.H))
@@ -235,12 +239,15 @@ namespace player
                 case PlayerStatus.ROLLING: //i think it will be a block state but can move 
                     //rolling  some time
 
+                    _collider2D.isTrigger = true;
                     _playerAnimation.PlayRoll();
                     _canMove = true;
                     _spriteRenderer.color = Color.green;
                     _rollTime.Update();
                     if (_rollTime.IsTrigger())
                     {
+                        touchWall = false;
+                        _collider2D.isTrigger = false;
                         _delay = new Counter(playerData.rollDelay);
                         _playerStatus = PlayerStatus.DELAY;
                         _rollCd.Reset(playerData.rollCd);
@@ -284,7 +291,7 @@ namespace player
                 newMessage.GetComponent<LoveMessage>()
                     .SetHpManager(GetHpManager())
                     .SetPlayerData(playerData)
-                    .SetExistTime(playerData.messageExistTime);
+                    .SetExistTime(_messageExistTime);
                 newMessage.GetComponent<Rigidbody2D>().velocity = dir.normalized * _messageSpeed;
                 newMessage.transform.localScale = _messageScale;
                 if (_playerFocus == PlayerFocus.FOCUS)
@@ -309,7 +316,10 @@ namespace player
 
             if (_playerStatus == PlayerStatus.ROLLING)
             {
-                _rigidbody2D.velocity = _rollDir * playerData.rollSpeed;
+                if (!touchWall)
+                {
+                    _rigidbody2D.velocity = _rollDir * playerData.rollSpeed;
+                }
                 return;
             }
 
@@ -320,6 +330,17 @@ namespace player
             if (Input.GetKey(KeyCode.S)) deltaMove.y -= _moveSpeed;
 
             _rigidbody2D.velocity = deltaMove;
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            Debug.Log("Trigger");
+            Debug.Log(other.transform.tag);
+            if (other.transform.CompareTag("wall"))
+            {
+                touchWall = true;
+                _rigidbody2D.velocity = Vector2.zero;
+            }
         }
     }
 }

@@ -48,6 +48,10 @@ namespace player
         private void OnCollisionEnter2D(Collision2D other)
         {
             Debug.Log("Message hit");
+            if (_collider2D == null)
+            {
+                return;
+            }
             if (other.transform.CompareTag("women"))
             {
                 _collider2D.isTrigger = true;

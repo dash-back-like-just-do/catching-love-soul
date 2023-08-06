@@ -21,7 +21,7 @@ MonoBehaviour:
   rollSpeed: 10
   walkSpeed: 2
   strength: 10
-  messageExistTime: 10
+  messageExistTime: 0.5
   focusCameraSize: 7
   noFocusCameraSize: 5
   cameraFollowTime: 0.2
