@@ -100,13 +100,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 5
-  duration: 0.7
+  duration: 1
   spriteRenderer: {fileID: 8287533895363272207}
-  destoryTime: 2
+  destoryTime: 3
   awakeTime: 0
   spawnTime: 0.3
   collider2D: {fileID: 9048870838216985993}
-  enabeledCollisionDistance: 0.5
+  enabeledCollisionDistance: 0.3
 --- !u!70 &9048870838216985993
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -120,8 +120,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010971069, y: 0.045114517}
-  m_Size: {x: 0.9335022, y: 2.9469948}
+  m_Offset: {x: 0.06967926, y: -0.008651733}
+  m_Size: {x: 2.6002655, y: 3.0545273}
   m_Direction: 0
 --- !u!114 &5967126864278007884
 MonoBehaviour:
