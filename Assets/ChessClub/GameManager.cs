@@ -40,7 +40,8 @@ namespace ChessClub
             bossIhp.SetHpManager(_hpManager);
             bossIhp.SetHp(gameData.bossInitHp);
             gameData.mapSize = _map.GetComponent<SpriteRenderer>().size;
-            walls = new List<GameObject>();
+            gameData.wallWidth = gameData.mapSize.x * 0.265625f*2.0f;//magic number by artist
+                walls = new List<GameObject>();
 
             foreach (var dir in udlr)
             {
