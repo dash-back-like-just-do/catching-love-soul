@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8287533895363272207}
   - component: {fileID: 5362750657316374253}
   - component: {fileID: 5211019019061459253}
+  - component: {fileID: 237221448676970950}
+  - component: {fileID: 1686831156342077257}
   m_Layer: 0
   m_Name: Rook
   m_TagString: Untagged
@@ -124,3 +126,32 @@ MonoBehaviour:
   speed: 8
   awakeTime: 0
   spawnTime: 0.3
+--- !u!114 &237221448676970950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052715777325192834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5ca298ed4c5634e8d5e3ace765dfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+--- !u!70 &1686831156342077257
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052715777325192834}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.36, y: 3.66}
+  m_Direction: 0

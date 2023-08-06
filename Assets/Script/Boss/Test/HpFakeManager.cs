@@ -2,11 +2,17 @@ using ChessClub;
 using UnityEngine;
 using utils;
 
-public class HpFakeManager : MonoBehaviour {
+public class HpFakeManager : MonoBehaviour,IHpManager {
     public GameObject _player;
     public GameObject _boss;
     public GameData gameData;
     HpManager _hpManager;
+
+    public HpManager GetHpManager()
+    {
+        return _hpManager;
+    }
+
     private void Start() {
         _hpManager = new HpManager();
         var playerIhp = _player.GetComponent<Ihp>();
