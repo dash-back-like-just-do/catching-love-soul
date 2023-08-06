@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 2280206855653853236}
   - component: {fileID: 2280206855653853243}
   - component: {fileID: 2280206855653853239}
-  - component: {fileID: 7134853685353667532}
-  - component: {fileID: 7029417398870700549}
   m_Layer: 0
   m_Name: boss
   m_TagString: women
@@ -90,36 +88,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   awakeCount: 2
   currentState: 0
---- !u!58 &7134853685353667532
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2280206855653853242}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &7029417398870700549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2280206855653853242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b5a92836fc4c646854e30d8b3ef153, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bossController: {fileID: 2280206855653853243}
-  _bossData: {fileID: 11400000, guid: 1b2e46e1173ebea4692dee380f466279, type: 2}
 --- !u!1001 &410684389388163244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,6 +95,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2280206855653853238}
     m_Modifications:
+    - target: {fileID: 2698917867232804874, guid: 868b99b699461d84e9546174d0545a81, type: 3}
+      propertyPath: m_TagString
+      value: women
+      objectReference: {fileID: 0}
     - target: {fileID: 2698917868457522553, guid: 868b99b699461d84e9546174d0545a81, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -177,6 +149,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 868b99b699461d84e9546174d0545a81, type: 3}
+--- !u!1 &2361980527601932454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2698917867232804874, guid: 868b99b699461d84e9546174d0545a81, type: 3}
+  m_PrefabInstance: {fileID: 410684389388163244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &2260924510454646655
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361980527601932454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.029890895, y: 0.10461843}
+  m_Size: {x: 1.120218, y: 3.2926939}
+  m_Direction: 0
+--- !u!114 &5441283973041320073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361980527601932454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b5a92836fc4c646854e30d8b3ef153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossController: {fileID: 2280206855653853243}
+  _bossData: {fileID: 11400000, guid: 1b2e46e1173ebea4692dee380f466279, type: 2}
 --- !u!4 &2361980528558271957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2698917868457522553, guid: 868b99b699461d84e9546174d0545a81, type: 3}

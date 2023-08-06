@@ -96,6 +96,7 @@ namespace GameCore.Boss
             else
                 transform.localScale = new Vector2(1, transform.localScale.y);
         }
+        public BossStateTag CurrentState => _stateMachine.GetCurrentState();
         #endregion
         #region  actions
         public void DoMove(Action onComplete)

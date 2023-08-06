@@ -6,5 +6,7 @@ namespace GameCore.Boss.core
         
         [field: SerializeField]public float MoveSpeed{get;private set;}
         [field: SerializeField]public float HurtFreezeTime{get;private set;}
+        [field: SerializeField]public float RushDamage{get;private set;}
+        [field: SerializeField]public float Damage{get;private set;}
     }
 }
