@@ -147,8 +147,8 @@ namespace GameCore.Boss
         {
             _stateMachine.ChangeState(BossStateTag.Idle);
         }
-        public void OnAttack(){
-            OnAttack(1,()=>{});
+        public void OnAttack(int attack){
+            OnAttack(attack,()=>{});
         }
         public void OnHurtTest(){
             OnHurt(); 
