@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using utils;
 
@@ -13,11 +14,20 @@ namespace ChessClub
         private HpManager _hpManager;
         private GameObject _map;
         private GameObject _player;
+        public GameObject wallPrefab;
+        public List<GameObject> walls;
+        public List<Vector2> udlr;
 
 
         // Start is called before the first frame update
         private void Start()
         {
+            udlr = new List<Vector2>();
+            udlr.Add(Vector2.up);
+            udlr.Add(Vector2.down);
+            udlr.Add(Vector2.left);
+            udlr.Add(Vector2.right);
+            Cursor.visible = false;
             _map = Instantiate(mapPrefab, gameData.mapCenter, transform.rotation);
 
             _boss = Instantiate(bossPrefab, gameData.bossInitPosition, transform.rotation);
@@ -30,6 +40,15 @@ namespace ChessClub
             bossIhp.SetHpManager(_hpManager);
             bossIhp.SetHp(gameData.bossInitHp);
             gameData.mapSize = _map.GetComponent<SpriteRenderer>().size;
+            walls = new List<GameObject>();
+
+            foreach (var dir in udlr)
+            {
+                GameObject newWall = Instantiate(wallPrefab);
+                newWall.transform.position = new Vector2(gameData.mapSize.x * 0.5f*dir.x, gameData.mapSize.y * 0.5f*dir.y);
+                newWall.GetComponent<BoxCollider2D>().size =new Vector2(gameData.wallWidth*Mathf.Abs(dir.x)+gameData.mapSize.x*Mathf.Abs(dir.y),gameData.mapSize.y*Mathf.Abs(dir.x) + gameData.wallWidth*Mathf.Abs(dir.y));
+                walls.Add(newWall);
+            }
         }
 
         // Update is called once per frame

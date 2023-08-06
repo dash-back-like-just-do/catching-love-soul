@@ -12,5 +12,6 @@ namespace ChessClub
 
         public Vector2 mapCenter;
         public Vector2 mapSize;
+        public float wallWidth;
     }
 }
