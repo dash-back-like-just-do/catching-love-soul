@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   attackTime: 1
-  messageSpeed: 20
-  moveSpeed: 5
+  messageSpeed: 10
+  moveSpeed: 4
   rollTime: 0.5
-  rollCd: 0.1
+  rollCd: 2
   rollDelay: 0.1
-  rollSpeed: 10
-  walkSpeed: 2
-  strength: 10
+  rollSpeed: 7
+  walkSpeed: 1
+  strength: 5
   messageExistTime: 10
-  focusCameraSize: 7
-  noFocusCameraSize: 5
+  focusCameraSize: 11
+  noFocusCameraSize: 8
   cameraFollowTime: 0.2
   dashDirKeyTime: 0.2
   focusScaleCameraTime: 0.15
   notFocusScaleCameraTime: 0.01
-  shootDelay: 1
+  shootDelay: 0.3
   heartInitScale: 0.5

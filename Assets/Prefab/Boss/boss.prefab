@@ -94,8 +94,8 @@ MonoBehaviour:
   - 100
   - 50
   bossCombatent: {fileID: 7344705558421360394}
-  restartDecisionTime: 1
-  minDistanceToPlayer: 10
+  restartDecisionTime: 0.5
+  minDistanceToPlayer: 7
   moveSecScale: 0.5
   maximaMoveDuration: 1.5
   maxRandomMoveDir: {x: 20, y: 20}
