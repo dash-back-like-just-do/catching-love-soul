@@ -24,5 +24,6 @@ namespace utils
         public float dashDirKeyTime;
         public float focusScaleCameraTime;
         public float notFocusScaleCameraTime;
+        public float shootDelay;
     }
 }
