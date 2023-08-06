@@ -9,7 +9,7 @@ namespace GameCore.Boss.core
             
         }
         public override void OnEnter(){
-
+            _bossContext.AnimationController.PlayHurt();
         }
 
         public override void OnUpdate(){

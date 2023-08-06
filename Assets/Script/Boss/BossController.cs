@@ -41,7 +41,7 @@ namespace GameCore.Boss
         private void Update()
         {
             _stateMachine.OnUpdate();
-            currentState = _stateMachine.GetCurrentState();
+            currentState = _stateMachine.GetCurrentState().ToString();
         }
         private void FixedUpdate()
         {
@@ -51,9 +51,12 @@ namespace GameCore.Boss
         public void OnIdle(){
             _stateMachine.ChangeState(BossStateTag.Idle);
         }
-        public void OnHurt(Action onComplete)
+        public bool OnHurt(Action onComplete)
         {
-            _stateMachine.ChangeState(BossStateTag.Hurt, onComplete);
+            BossStateTag current = _stateMachine.GetCurrentState();
+            _stateMachine.SetNextState(current);
+            _stateMachine.ChangeState(BossStateTag.Hurt, onComplete,true);
+            return true;
         }
         //sec <= 0 : move for ever
         public void OnMove(Vector2 dir, Action onComplete, float sec = 0)
@@ -137,7 +140,9 @@ namespace GameCore.Boss
         public void OnAttack(){
             OnAttack(1,()=>{});
         }
-
+        public void OnHurtTest(){
+            OnHurt(()=>{}); 
+        }
         
         #endregion
 
