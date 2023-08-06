@@ -60,28 +60,51 @@ namespace GameCore.Boss
                         });
                     });
                 }
-                else{
-                    MoveRandomly(()=>{
-                        if(currentState >= 2){
-                            bossController.OnAttack(1,()=>{
-                                MoveAwayFromPlayer(()=>{
-                                    RushToPlayer(()=>{
-                                        //back to idle
-                                        RestartDecision();
-                                    });
-                                });
-                            });
-                        }
-                        else{
-                            RushToPlayer(()=>{
-                                //back to idle
-                                RestartDecision();
-                            });
-                        }   
-                    });
+                else
+                {
+                    if (currentState >= 4)
+                    {
+                        bossController.OnAttack(3, () =>
+                        {
+                            MoveRandomDision();
+                        });
+                    }
+                    else{
+                        MoveRandomDision();
+                    }
                 }
             }
         }
+
+        private void MoveRandomDision()
+        {
+            MoveRandomly(() =>
+            {
+                if (currentState >= 2)
+                {
+                    bossController.OnAttack(1, () =>
+                    {
+                        MoveAwayFromPlayer(() =>
+                        {
+                            RushToPlayer(() =>
+                            {
+                                //back to idle
+                                RestartDecision();
+                            });
+                        });
+                    });
+                }
+                else
+                {
+                    RushToPlayer(() =>
+                    {
+                        //back to idle
+                        RestartDecision();
+                    });
+                }
+            });
+        }
+
         [SerializeField] float restartDecisionTime = 3;
         void RestartDecision(){
             bossController.OnIdle();

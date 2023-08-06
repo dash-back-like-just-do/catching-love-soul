@@ -1,16 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class kingAnimation : MonoBehaviour
 {
-    private GameObject front;
+    
     public Animator QueenAni;
+    Action swingAction;
     // Start is called before the first frame update
     void Start()
     {
-        front = gameObject.transform.GetChild(1).gameObject;
-        QueenAni = front.GetComponent<Animator>();
+        
+        QueenAni = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class kingAnimation : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             PlayIdle();
         if (Input.GetKeyDown(KeyCode.S))
-            PlaySwing();
+            PlaySwing(()=>{});
     }
 
     public void PlayIdle()
@@ -27,10 +29,13 @@ public class kingAnimation : MonoBehaviour
         QueenAni.SetInteger("Status", 0);
     }
 
-    public void PlaySwing()
+    public void PlaySwing(Action action)
     {
         QueenAni.SetInteger("Status", 1);
+        swingAction = action;
     }
-
+    public void CallSwingComplete(){
+        swingAction();
+    }
 
 }

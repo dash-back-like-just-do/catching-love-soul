@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8791993506978412701}
   - component: {fileID: 8791993506978412700}
+  - component: {fileID: 1072057367147265861}
   m_Layer: 0
   m_Name: hand
   m_TagString: Untagged
@@ -139,6 +140,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1072057367147265861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791993506978412706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2510f214766694e4298b1748577a2a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QueenAni: {fileID: 8791993506978412700}
 --- !u!1 &8791993507085303538
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8791993507085303533}
   - component: {fileID: 8791993507085303532}
+  - component: {fileID: 3353840488818244973}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -223,6 +238,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &3353840488818244973
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791993507085303538}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01238327, y: 0.000000447036}
+  m_Size: {x: 0.5156437, y: 3.7400017}
+  m_Direction: 0
 --- !u!1 &8791993507202773826
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8791993507202773949}
   - component: {fileID: 8791993507202773948}
+  - component: {fileID: 8763975550353638372}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -307,6 +339,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &8763975550353638372
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791993507202773826}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.038084663, y: -0.00000029803994}
+  m_Size: {x: 0.46445203, y: 3.7400005}
+  m_Direction: 0
 --- !u!1 &8791993507320493780
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,9 +428,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8791993507636479324}
-  - component: {fileID: 8791993507636479327}
   - component: {fileID: 6069909251352547557}
   - component: {fileID: 1592912330394733194}
+  - component: {fileID: 8189291894335745374}
   m_Layer: 0
   m_Name: king
   m_TagString: Untagged
@@ -407,19 +455,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8791993507636479327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8791993507636479325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2510f214766694e4298b1748577a2a22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  QueenAni: {fileID: 0}
 --- !u!114 &6069909251352547557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,8 +467,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed81198960dc34bbe7c05b7d2a56f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 1592912330394733194}
-  speed: 0
+  jumpPower: 5
+  duration: 0.7
+  spriteRenderer: {fileID: 8791993506804802548}
+  swarldRenderer:
+  - {fileID: 8791993507085303532}
+  - {fileID: 8791993507202773948}
+  destoryTime: 2
+  awakeTime: 0
+  spawnTime: 0.3
+  collider2D:
+  - {fileID: 8189291894335745374}
+  - {fileID: 3353840488818244973}
+  - {fileID: 8763975550353638372}
+  enabeledCollisionDistance: 0.5
+  kingAnimation: {fileID: 1072057367147265861}
 --- !u!50 &1592912330394733194
 Rigidbody2D:
   serializedVersion: 4
@@ -455,3 +503,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &8189291894335745374
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791993507636479325}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.029966354, y: -0.1598208}
+  m_Size: {x: 1.0793505, y: 4.036596}
+  m_Direction: 0
