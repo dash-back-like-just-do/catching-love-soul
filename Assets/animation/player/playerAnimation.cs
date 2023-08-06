@@ -60,4 +60,9 @@ public class playerAnimation : MonoBehaviour
         bloods.SetInteger("Status", 1);
     }
 
+    public void PlayHurt()
+    {
+        bloods.SetInteger("Status", 1);
+    }
+
 }
