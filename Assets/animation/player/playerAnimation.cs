@@ -7,6 +7,7 @@ public class playerAnimation : MonoBehaviour
 {
     private GameObject front;
     public Animator PlayerAni;
+    public Animator bloods;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,8 @@ public class playerAnimation : MonoBehaviour
             PlayAttack();
         if (Input.GetKeyDown(KeyCode.Alpha3))
             PlayRoll();
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            PlayDead();
         if (Input.GetKeyUp(KeyCode.Alpha1))
             PlayIdle();
         if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -50,4 +53,11 @@ public class playerAnimation : MonoBehaviour
     {
         PlayerAni.SetInteger("Status", 3);
     }
+
+    public void PlayDead()
+    {
+        PlayerAni.SetInteger("Status", 4);
+        bloods.SetInteger("Status", 1);
+    }
+
 }

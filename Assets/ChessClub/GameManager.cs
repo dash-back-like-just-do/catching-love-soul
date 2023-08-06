@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using utils;
@@ -10,14 +11,17 @@ namespace ChessClub
         public GameObject bossPrefab;
         public GameData gameData;
         public GameObject mapPrefab;
+        public GameObject canvasPrefab;
         private GameObject _boss;
         private HpManager _hpManager;
         private GameObject _map;
         private GameObject _player;
+        private GameObject _canvas;
         public GameObject wallPrefab;
         public List<GameObject> walls;
         public List<Vector2> udlr;
-
+        private float playerHp;
+        private float queenHp;
 
         // Start is called before the first frame update
         private void Start()
@@ -29,10 +33,10 @@ namespace ChessClub
             udlr.Add(Vector2.right);
             Cursor.visible = false;
             _map = Instantiate(mapPrefab, gameData.mapCenter, transform.rotation);
-
             _boss = Instantiate(bossPrefab, gameData.bossInitPosition, transform.rotation);
             _player = Instantiate(playerPrefab, gameData.playerInitPosition, transform.rotation);
             _hpManager = new HpManager();
+            _canvas = Instantiate(canvasPrefab);
             var playerIhp = _player.GetComponent<Ihp>();
             playerIhp.SetHpManager(_hpManager);
             playerIhp.SetHp(gameData.playerInitHp);
@@ -54,6 +58,28 @@ namespace ChessClub
         // Update is called once per frame
         private void FixedUpdate()
         {
+            playerHp = _player.GetComponent<Ihp>().GetHp();
+            queenHp = _boss.GetComponent<Ihp>().GetHp();
+            if (Input.GetKey(KeyCode.Z))
+                _player.GetComponent<Ihp>().SetHp(playerHp - 5);
+            if (queenHp <= 0 ) {
+                win();
+            }
+            if(playerHp <= 0 )
+            {
+                lose();
+            }
+        }
+        private void win()
+        {
+            _canvas.transform.GetChild(2).gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+        private void lose()
+        {
+            _canvas.transform.GetChild(3).gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
 
         public HpManager GetHpManager()
