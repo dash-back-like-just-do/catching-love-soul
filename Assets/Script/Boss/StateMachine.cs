@@ -3,70 +3,74 @@ using System;
 using UnityEngine;
 namespace GameCore.Basic
 {
-    public class StateMachine:IStateMachineContext
+    public class StateMachine<T> : IStateMachineContext where T : Enum 
     {
-        Dictionary<string,IState> _stateMap;
-        IState _currentState;
-        IState _defaultState;
-        IState _nextState;
+        Dictionary<T,IState> _stateMap;
+        T _currentState;
+        T _defaultState;
+        T _nextState;
+        public IState CurrentState => _stateMap[_currentState];
         public StateMachine(){
-            _stateMap = new Dictionary<string, IState>();
+            _stateMap = new Dictionary<T, IState>();
         }
-        public void SetState(string state){
-            _currentState = _stateMap[state];
+        public void SetState(T state){
+            _currentState = state;
         }
-        public void SetNextState(string state){
-            _nextState = _stateMap[state];
+        public void SetNextState(T state){
+            _nextState = state;
         }
         public void UnSetNextState(){
-            _nextState = null;
+            _nextState = _defaultState;
         }
-        public void SetDefaultState(string state){
-            _defaultState = _stateMap[state];
+        public void SetDefaultState(T state){
+            _defaultState = state;
+            _nextState = state;
         }
         public void Start(){
-            if(_currentState == null)
-                _currentState = _defaultState;
-            _currentState.OnEnter();
+            _currentState = _defaultState;
+            
+            CurrentState.OnEnter();
         }
-        public void ChangeState(string state,Action onComplete = null){
+        public void ChangeState(T state,Action onComplete = null,bool hardInsertState = false){
             IState newState = _stateMap[state];
-            if(_currentState.Equals(_stateMap[state]))
-                return;
-            IState lastState = _currentState;
-            _currentState.OnLeave();
+            //if(_currentState.Equals(state))
+            //    return;
+            IState lastState = CurrentState;
+            CurrentState.OnLeave();
             newState.CallOnLeave(onComplete);
-            _currentState = newState;
+            _currentState = state;
             newState.OnEnter();
-            lastState.OnComplete();
+            if(!hardInsertState)
+                lastState.OnComplete();
             Debug.Log($"ChangeTo:{state}");
         }
-        public void AddState(string stateName,IState state){
+        public void AddState(T stateName,IState state){
             _stateMap.Add(stateName,state);
         }
         
         public void OnUpdate(){
-            _currentState.OnUpdate();
+            CurrentState.OnUpdate();
         }
         public void OnFixUpdate(){
-            _currentState.OnFixUpdate();
+            CurrentState.OnFixUpdate();
         }
         public void MoveNextState(){
-            IState lastState = _currentState;
-            if(_nextState!=null){
+            IState lastState = CurrentState;
+            if(!_nextState.Equals(_defaultState)){
                 _currentState = _nextState;
-                _nextState = null;
+                UnSetNextState();
             }
             else
                 _currentState = _defaultState;
             lastState.OnLeave();
-            _currentState.OnEnter();
+            CurrentState.OnEnter();
             Debug.Log($"ChangeTo:{GetCurrentState()}");
             lastState.OnComplete();
         }
-        public string GetCurrentState(){
-            return _currentState.GetType().ToString();
+        public T GetCurrentState(){
+            return _currentState;
         }
+        
     }
     public interface IState{
         void OnEnter();

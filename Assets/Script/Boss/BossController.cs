@@ -9,27 +9,27 @@ using utils;
 namespace GameCore.Boss
 {
 
-    public class BossController : Entity, IBossController
+    public class BossController : MonoBehaviour, IBossController
     {
         [SerializeField] Rigidbody2D _rigidbody2D;
         [SerializeField] BossData _bossData;
         [SerializeField] BossSummonSetting _summonSetting;
         [SerializeField] queenAnimation queenAnimation;
-        StateMachine _stateMachine;
+        StateMachine<BossStateTag> _stateMachine;
 
         Vector2 _moveDirection;
         float _moveDuration = 0;
         int _attackType = 0;
 
         public queenAnimation AnimationController => queenAnimation;
+        public BossData Data => _bossData;
         string currentState;
         private void Awake()
         {
-            _stateMachine = new StateMachine();
+            _stateMachine = new StateMachine<BossStateTag>();
             _stateMachine.AddState(BossStateTag.Idle, new BossIdleState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Move, new BossMoveState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Attack, new BossAttackState(this, _stateMachine));
-            _stateMachine.AddState(BossStateTag.Hurt, new BossHurtState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Rush, new BossRushState(this, _stateMachine));
             _stateMachine.SetDefaultState(BossStateTag.Idle);
 
@@ -41,7 +41,7 @@ namespace GameCore.Boss
         private void Update()
         {
             _stateMachine.OnUpdate();
-            currentState = _stateMachine.GetCurrentState();
+            currentState = _stateMachine.GetCurrentState().ToString();
         }
         private void FixedUpdate()
         {
@@ -51,10 +51,16 @@ namespace GameCore.Boss
         public void OnIdle(){
             _stateMachine.ChangeState(BossStateTag.Idle);
         }
-        public void OnHurt(Action onComplete)
+        public void OnHurt()
         {
-            _stateMachine.ChangeState(BossStateTag.Hurt, onComplete);
+            AnimationController.PlayHurt();
+            StartCoroutine(resetHurt());
+            IEnumerator resetHurt(){
+                yield return new WaitForSeconds(_bossData.HurtFreezeTime);
+                AnimationController.ResetHurt();
+            }
         }
+        
         //sec <= 0 : move for ever
         public void OnMove(Vector2 dir, Action onComplete, float sec = 0)
         {
@@ -77,7 +83,7 @@ namespace GameCore.Boss
             _moveDuration = sec;
             
             TurnAround(_moveDirection.x > 0);
-
+            _stateMachine.ChangeState(BossStateTag.Idle);
             AnimationController.PlayRush();
             StartCoroutine(waitForGetOn());
             //delay translate to rush
@@ -87,7 +93,13 @@ namespace GameCore.Boss
                 _stateMachine.ChangeState(BossStateTag.Rush, onComplete);
             }
         }
-
+        public bool DetactWall(){
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position,_moveDirection,1f,LayerMask.GetMask("Wall")); 
+            Debug.DrawRay(transform.position,_moveDirection,Color.red);
+            return raycastHit2D.collider!=null;
+                
+            
+        }
         public void TurnAround(bool faceToLeft)
         {
             Transform transform = queenAnimation.transform;
@@ -96,6 +108,7 @@ namespace GameCore.Boss
             else
                 transform.localScale = new Vector2(1, transform.localScale.y);
         }
+        public BossStateTag CurrentState => _stateMachine.GetCurrentState();
         #endregion
         #region  actions
         public void DoMove(Action onComplete)
@@ -137,7 +150,9 @@ namespace GameCore.Boss
         public void OnAttack(){
             OnAttack(1,()=>{});
         }
-
+        public void OnHurtTest(){
+            OnHurt(); 
+        }
         
         #endregion
 

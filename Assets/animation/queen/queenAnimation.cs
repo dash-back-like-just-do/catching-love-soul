@@ -43,5 +43,12 @@ public class queenAnimation : MonoBehaviour
     {
         summondone();
     }
-
+    public void PlayHurt()
+    {
+        QueenAni.SetBool("OnHurt", true);
+    }
+    //todo: call in animation clip
+    public void ResetHurt(){
+        QueenAni.SetBool("OnHurt", false);
+    }
 }

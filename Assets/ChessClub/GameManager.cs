@@ -4,7 +4,7 @@ using utils;
 
 namespace ChessClub
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour,IHpManager
     {
         public GameObject playerPrefab;
         public GameObject bossPrefab;
@@ -54,6 +54,11 @@ namespace ChessClub
         // Update is called once per frame
         private void FixedUpdate()
         {
+        }
+
+        public HpManager GetHpManager()
+        {
+            return _hpManager;
         }
     }
 }

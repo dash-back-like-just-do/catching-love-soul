@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GameCore.Basic;
 namespace GameCore.Boss.core
 {
@@ -33,13 +34,15 @@ namespace GameCore.Boss.core
         public virtual void CallOnLeave(Action func){
             _onComplete = func;
         }
+        
     }
-    public class BossStateTag{
-        public static string Move = "Move",
-                            Idle = "Idle",
-                            Attack = "Attack",
-                            Hurt = "Hurt",
-                            Rush = "Rush";
-
+    
+    public enum BossStateTag{
+        Move,
+        Idle,
+        Attack,
+        Hurt,
+        Rush
     }
+    
 }
