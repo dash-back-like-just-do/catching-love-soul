@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 2280206855653853236}
   - component: {fileID: 2280206855653853243}
   - component: {fileID: 2280206855653853239}
-  - component: {fileID: 7134853685353667532}
-  - component: {fileID: 2280206855653853237}
+  - component: {fileID: 7344705558421360394}
   m_Layer: 0
   m_Name: boss
   m_TagString: women
@@ -49,10 +48,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -88,76 +87,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d5c0ce9acef8a4c9872ec179f9cd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  awakeCount: 2
   currentState: 0
-  player: {fileID: 0}
---- !u!58 &7134853685353667532
-CircleCollider2D:
+  changeStateHP:
+  - 150
+  - 100
+  - 50
+  bossCombatent: {fileID: 7344705558421360394}
+  restartDecisionTime: 3
+  minDistanceToPlayer: 10
+  moveSecScale: 0.5
+  maximaMoveDuration: 3
+  maxRandomMoveDir: {x: 20, y: 20}
+  minRandomMoveDir: {x: 15, y: 15}
+  maxRandomMoveTime: 5
+  minRandomMoveTime: 2
+  rushScale: 4
+  rushSec: 1
+--- !u!114 &7344705558421360394
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2280206855653853242}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!212 &2280206855653853237
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2280206855653853242}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1719874929
-  m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b5a92836fc4c646854e30d8b3ef153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossController: {fileID: 2280206855653853243}
+  _bossData: {fileID: 11400000, guid: 1b2e46e1173ebea4692dee380f466279, type: 2}
 --- !u!1001 &410684389388163244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,6 +125,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2280206855653853238}
     m_Modifications:
+    - target: {fileID: 2698917867232804874, guid: 868b99b699461d84e9546174d0545a81, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2698917868457522553, guid: 868b99b699461d84e9546174d0545a81, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -213,8 +177,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: queen
       objectReference: {fileID: 0}
+    - target: {fileID: 2698917868457522554, guid: 868b99b699461d84e9546174d0545a81, type: 3}
+      propertyPath: m_TagString
+      value: women
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 868b99b699461d84e9546174d0545a81, type: 3}
+--- !u!1 &2361980527601932454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2698917867232804874, guid: 868b99b699461d84e9546174d0545a81, type: 3}
+  m_PrefabInstance: {fileID: 410684389388163244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &2260924510454646655
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361980527601932454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.029890895, y: 0.10461843}
+  m_Size: {x: 1.120218, y: 3.2926939}
+  m_Direction: 0
 --- !u!4 &2361980528558271957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2698917868457522553, guid: 868b99b699461d84e9546174d0545a81, type: 3}

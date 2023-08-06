@@ -5,7 +5,7 @@ using utils;
 
 namespace ChessClub
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour,IHpManager
     {
         public GameObject playerPrefab;
         public GameObject bossPrefab;
@@ -80,6 +80,11 @@ namespace ChessClub
         {
             _canvas.transform.GetChild(3).gameObject.SetActive(true);
             Time.timeScale = 0;
+        }
+
+        public HpManager GetHpManager()
+        {
+            return _hpManager;
         }
     }
 }

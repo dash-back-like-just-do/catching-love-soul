@@ -1,4 +1,5 @@
 using GameCore.Basic;
+using UnityEngine;
 
 namespace GameCore.Boss.core
 {
@@ -9,6 +10,7 @@ namespace GameCore.Boss.core
             
         }
         public override void OnEnter(){
+            Debug.Log("ENTER MOVER");
             _bossContext.AnimationController.PlayFloat();
             _bossContext.DoMove(()=>{
                 _stateMachine.MoveNextState();
@@ -20,7 +22,8 @@ namespace GameCore.Boss.core
             base.OnLeave();
         }
         public override void OnUpdate(){
-            
+            if(_bossContext.DetactWall())
+                _bossContext.StopMove();
         }
     }
 }
