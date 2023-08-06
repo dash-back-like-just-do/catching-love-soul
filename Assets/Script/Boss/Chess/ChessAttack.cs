@@ -13,9 +13,9 @@ public class ChessAttack : MonoBehaviour {
         
     }
     private void DamagePlayer(Collision2D other)
-        {
-            IHpManager hpManager = GameObject.FindWithTag("GameManager").GetComponent<IHpManager>();
-            hpManager.GetHpManager().Damage(other.gameObject, damage);
-        }
+    {
+        IHpManager hpManager = GameObject.FindWithTag("GameManager").GetComponent<IHpManager>();
+        hpManager.GetHpManager().Damage(other.gameObject, damage);
+    }
     
 }

@@ -36,7 +36,7 @@ namespace ChessClub
             var playerIhp = _player.GetComponent<Ihp>();
             playerIhp.SetHpManager(_hpManager);
             playerIhp.SetHp(gameData.playerInitHp);
-            var bossIhp = _boss.GetComponentInChildren<Ihp>();
+            var bossIhp = _boss.GetComponent<Ihp>();
             bossIhp.SetHpManager(_hpManager);
             bossIhp.SetHp(gameData.bossInitHp);
             gameData.mapSize = _map.GetComponent<SpriteRenderer>().size;

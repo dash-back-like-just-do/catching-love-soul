@@ -35,9 +35,10 @@ namespace GameCore.Boss.Combatent
 
         public void Hurted(float damage)
         {
+            Debug.Log("on boss hurt");
             if(!_freezeTimer.IsTrigger()) return;
             _hp -= damage;
-            Debug.Log(_hp);
+            Debug.Log("boss:"+_hp);
             _bossController.OnHurt();
             _freezeTimer.Reset();
         }
