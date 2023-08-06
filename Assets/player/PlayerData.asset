@@ -22,3 +22,8 @@ MonoBehaviour:
   walkSpeed: 2
   strength: 10
   messageExistTime: 0.2
+  focusCameraSize: 10
+  noFocusCameraSize: 5
+  scaleCameraTime: 0.2
+  cameraFollowTime: 0.2
+  dashDirKeyTime: 0.2

@@ -39,6 +39,11 @@ namespace utils
             _countTime = 0;
             _cycleTime = cycle;
         }
+        public void Reset(float cycle,float countTime)
+        {
+            _countTime = countTime;
+            _cycleTime = cycle;
+        }
 
         public void SetCycle(float cycle)
         {

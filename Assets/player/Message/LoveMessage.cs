@@ -49,6 +49,7 @@ namespace player
             if (other.transform.CompareTag("women"))
             {
                 _hpManager.Damage(other.gameObject, _playerData.strength);
+                _existCounter.Reset();
             }
         }
     }
