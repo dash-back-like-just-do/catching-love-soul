@@ -5,5 +5,6 @@ namespace GameCore.Boss.core
     public class BossData : ScriptableObject {
         
         [field: SerializeField]public float MoveSpeed{get;private set;}
+        [field: SerializeField]public float HurtFreezeTime{get;private set;}
     }
 }

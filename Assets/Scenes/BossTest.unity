@@ -1036,6 +1036,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d5c0ce9acef8a4c9872ec179f9cd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1231378477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7029417398870700549, guid: d81f1441b1dc65b48859cdeb783c52f1, type: 3}
+  m_PrefabInstance: {fileID: 2280206854431559708}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b5a92836fc4c646854e30d8b3ef153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1240178049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,15 +1535,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1231378471}
-        m_TargetAssemblyTypeName: GameCore.Boss.BossController, Assembly-CSharp
-        m_MethodName: OnHurtTest
-        m_Mode: 1
+      - m_Target: {fileID: 1231378477}
+        m_TargetAssemblyTypeName: GameCore.Boss.Combatent.BossCombatent, Assembly-CSharp
+        m_MethodName: Hurted
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

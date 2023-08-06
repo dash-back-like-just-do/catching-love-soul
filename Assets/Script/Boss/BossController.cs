@@ -22,6 +22,7 @@ namespace GameCore.Boss
         int _attackType = 0;
 
         public queenAnimation AnimationController => queenAnimation;
+        public BossData Data => _bossData;
         string currentState;
         private void Awake()
         {
@@ -29,7 +30,6 @@ namespace GameCore.Boss
             _stateMachine.AddState(BossStateTag.Idle, new BossIdleState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Move, new BossMoveState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Attack, new BossAttackState(this, _stateMachine));
-            _stateMachine.AddState(BossStateTag.Hurt, new BossHurtState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Rush, new BossRushState(this, _stateMachine));
             _stateMachine.SetDefaultState(BossStateTag.Idle);
 
@@ -51,12 +51,9 @@ namespace GameCore.Boss
         public void OnIdle(){
             _stateMachine.ChangeState(BossStateTag.Idle);
         }
-        public bool OnHurt(Action onComplete)
+        public void OnHurt()
         {
-            BossStateTag current = _stateMachine.GetCurrentState();
-            _stateMachine.SetNextState(current);
-            _stateMachine.ChangeState(BossStateTag.Hurt, onComplete,true);
-            return true;
+            AnimationController.PlayHurt();
         }
         //sec <= 0 : move for ever
         public void OnMove(Vector2 dir, Action onComplete, float sec = 0)
@@ -141,7 +138,7 @@ namespace GameCore.Boss
             OnAttack(1,()=>{});
         }
         public void OnHurtTest(){
-            OnHurt(()=>{}); 
+            OnHurt(); 
         }
         
         #endregion

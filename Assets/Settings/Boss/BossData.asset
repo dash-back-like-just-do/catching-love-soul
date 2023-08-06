@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BossData
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 3
-  <MoveDistance>k__BackingField: 0
+  <HurtFreezeTime>k__BackingField: 0.5

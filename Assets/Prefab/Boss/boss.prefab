@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2280206855653853243}
   - component: {fileID: 2280206855653853239}
   - component: {fileID: 7134853685353667532}
+  - component: {fileID: 7029417398870700549}
   m_Layer: 0
   m_Name: boss
   m_TagString: women
@@ -87,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d5c0ce9acef8a4c9872ec179f9cd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  awakeCount: 2
   currentState: 0
-  player: {fileID: 0}
 --- !u!58 &7134853685353667532
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -105,6 +106,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7029417398870700549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2280206855653853242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b5a92836fc4c646854e30d8b3ef153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossController: {fileID: 2280206855653853243}
+  _bossData: {fileID: 11400000, guid: 1b2e46e1173ebea4692dee380f466279, type: 2}
 --- !u!1001 &410684389388163244
 PrefabInstance:
   m_ObjectHideFlags: 0

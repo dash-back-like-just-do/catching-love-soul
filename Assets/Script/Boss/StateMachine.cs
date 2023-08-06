@@ -24,6 +24,7 @@ namespace GameCore.Basic
         }
         public void SetDefaultState(T state){
             _defaultState = state;
+            _nextState = state;
         }
         public void Start(){
             _currentState ??= _defaultState;
