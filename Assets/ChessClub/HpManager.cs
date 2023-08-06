@@ -1,14 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using utils;
-
 namespace ChessClub
 {
     
     public class HpManager
     {
         private List<Ihp> Ihps = new List<Ihp>();
-
         public void addNewIhp(Ihp i)
         {
             Ihps.Add(i);
@@ -25,6 +23,7 @@ namespace ChessClub
             {
                 Debug.Log(target);
             }
+
         }
     }
 }

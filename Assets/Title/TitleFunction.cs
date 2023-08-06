@@ -16,5 +16,6 @@ public class TitleFunction : MonoBehaviour
     public void ChessClub()
     {
         SceneManager.LoadScene("ChessClub");
+        Time.timeScale = 1;
     }
 }
