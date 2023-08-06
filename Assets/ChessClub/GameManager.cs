@@ -75,12 +75,16 @@ namespace ChessClub
         private void win()
         {
             _canvas.transform.GetChild(2).gameObject.SetActive(true);
+            _canvas.transform.GetChild(4).gameObject.SetActive(true);
+            Cursor.visible = true;
             Time.timeScale = 0;
         }
 
         private void lose()
         {
             _canvas.transform.GetChild(3).gameObject.SetActive(true);
+            _canvas.transform.GetChild(4).gameObject.SetActive(true);
+            Cursor.visible = true;
             Time.timeScale = 0;
         }
 
