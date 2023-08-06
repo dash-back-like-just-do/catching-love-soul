@@ -60,8 +60,9 @@ namespace ChessClub
         {
             playerHp = _player.GetComponent<Ihp>().GetHp();
             queenHp = _boss.GetComponent<Ihp>().GetHp();
-            if (Input.GetKey(KeyCode.Z))
-                _player.GetComponent<Ihp>().SetHp(playerHp - 5);
+            _canvas.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(241 * (queenHp / gameData.bossInitHp), 26.1223f);
+            _canvas.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(62 * (playerHp / gameData.playerInitHp), 27.1688f);
+
             if (queenHp <= 0 ) {
                 win();
             }
