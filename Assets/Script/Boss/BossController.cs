@@ -54,7 +54,13 @@ namespace GameCore.Boss
         public void OnHurt()
         {
             AnimationController.PlayHurt();
+            StartCoroutine(resetHurt());
+            IEnumerator resetHurt(){
+                yield return new WaitForSeconds(_bossData.HurtFreezeTime);
+                AnimationController.ResetHurt();
+            }
         }
+        
         //sec <= 0 : move for ever
         public void OnMove(Vector2 dir, Action onComplete, float sec = 0)
         {
