@@ -3,25 +3,25 @@ using System;
 using UnityEngine;
 namespace GameCore.Basic
 {
-    public class StateMachine:IStateMachineContext
+    public class StateMachine<T> : IStateMachineContext where T : Enum 
     {
-        Dictionary<string,IState> _stateMap;
+        Dictionary<T,IState> _stateMap;
         IState _currentState;
         IState _defaultState;
         IState _nextState;
         public StateMachine(){
-            _stateMap = new Dictionary<string, IState>();
+            _stateMap = new Dictionary<T, IState>();
         }
-        public void SetState(string state){
+        public void SetState(T state){
             _currentState = _stateMap[state];
         }
-        public void SetNextState(string state){
+        public void SetNextState(T state){
             _nextState = _stateMap[state];
         }
         public void UnSetNextState(){
             _nextState = null;
         }
-        public void SetDefaultState(string state){
+        public void SetDefaultState(T state){
             _defaultState = _stateMap[state];
         }
         public void Start(){
@@ -29,7 +29,7 @@ namespace GameCore.Basic
                 _currentState = _defaultState;
             _currentState.OnEnter();
         }
-        public void ChangeState(string state,Action onComplete = null){
+        public void ChangeState(T state,Action onComplete = null){
             IState newState = _stateMap[state];
             if(_currentState.Equals(_stateMap[state]))
                 return;
@@ -41,7 +41,7 @@ namespace GameCore.Basic
             lastState.OnComplete();
             Debug.Log($"ChangeTo:{state}");
         }
-        public void AddState(string stateName,IState state){
+        public void AddState(T stateName,IState state){
             _stateMap.Add(stateName,state);
         }
         

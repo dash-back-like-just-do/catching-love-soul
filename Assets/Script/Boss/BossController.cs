@@ -15,7 +15,7 @@ namespace GameCore.Boss
         [SerializeField] BossData _bossData;
         [SerializeField] BossSummonSetting _summonSetting;
         [SerializeField] queenAnimation queenAnimation;
-        StateMachine _stateMachine;
+        StateMachine<BossStateTag> _stateMachine;
 
         Vector2 _moveDirection;
         float _moveDuration = 0;
@@ -25,7 +25,7 @@ namespace GameCore.Boss
         string currentState;
         private void Awake()
         {
-            _stateMachine = new StateMachine();
+            _stateMachine = new StateMachine<BossStateTag>();
             _stateMachine.AddState(BossStateTag.Idle, new BossIdleState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Move, new BossMoveState(this, _stateMachine));
             _stateMachine.AddState(BossStateTag.Attack, new BossAttackState(this, _stateMachine));
