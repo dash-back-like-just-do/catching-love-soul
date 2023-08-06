@@ -101,4 +101,5 @@ MonoBehaviour:
   duration: 1
   spriteRenderer: {fileID: 8287533895363272207}
   destoryTime: 2
-  awakeTime: 1
+  awakeTime: 0
+  spawnTime: 0.3
