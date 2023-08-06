@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Vector2 = System.Numerics.Vector2;
 
 public class Mouse : MonoBehaviour
 {
@@ -17,7 +14,14 @@ public class Mouse : MonoBehaviour
         // transform.position = ( - new Vector3(Screen.width,Screen.height,0)/2);
         Vector3 p = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         p.z = 0;
-        transform.position = p;
 
+        var trash = Vector2.zero;
+            var mouseNewPosition =
+                Vector2.SmoothDamp(
+                    transform.position,
+                    p,
+                    ref trash,
+                    0.0f);
+        transform.position = mouseNewPosition;
     }
 }
