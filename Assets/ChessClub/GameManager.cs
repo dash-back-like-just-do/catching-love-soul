@@ -4,7 +4,7 @@ using utils;
 
 namespace ChessClub
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour,IHpManager
     {
         public GameObject playerPrefab;
         public GameObject bossPrefab;
@@ -36,7 +36,7 @@ namespace ChessClub
             var playerIhp = _player.GetComponent<Ihp>();
             playerIhp.SetHpManager(_hpManager);
             playerIhp.SetHp(gameData.playerInitHp);
-            var bossIhp = _boss.GetComponent<Ihp>();
+            var bossIhp = _boss.GetComponentInChildren<Ihp>();
             bossIhp.SetHpManager(_hpManager);
             bossIhp.SetHp(gameData.bossInitHp);
             gameData.mapSize = _map.GetComponent<SpriteRenderer>().size;
@@ -54,6 +54,11 @@ namespace ChessClub
         // Update is called once per frame
         private void FixedUpdate()
         {
+        }
+
+        public HpManager GetHpManager()
+        {
+            return _hpManager;
         }
     }
 }

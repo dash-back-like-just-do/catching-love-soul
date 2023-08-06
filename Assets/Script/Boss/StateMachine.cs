@@ -27,13 +27,14 @@ namespace GameCore.Basic
             _nextState = state;
         }
         public void Start(){
-            _currentState ??= _defaultState;
+            _currentState = _defaultState;
+            
             CurrentState.OnEnter();
         }
         public void ChangeState(T state,Action onComplete = null,bool hardInsertState = false){
             IState newState = _stateMap[state];
-            if(_currentState.Equals(state))
-                return;
+            //if(_currentState.Equals(state))
+            //    return;
             IState lastState = CurrentState;
             CurrentState.OnLeave();
             newState.CallOnLeave(onComplete);

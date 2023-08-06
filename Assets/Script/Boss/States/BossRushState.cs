@@ -20,7 +20,8 @@ namespace GameCore.Boss.core
             base.OnLeave();
         }
         public override void OnUpdate(){
-            
+            if(_bossContext.DetactWall())
+                _bossContext.StopMove();
         }
     }
 }

@@ -9,7 +9,7 @@ using utils;
 namespace GameCore.Boss
 {
 
-    public class BossController : Entity, IBossController
+    public class BossController : MonoBehaviour, IBossController
     {
         [SerializeField] Rigidbody2D _rigidbody2D;
         [SerializeField] BossData _bossData;
@@ -77,7 +77,7 @@ namespace GameCore.Boss
             _moveDuration = sec;
             
             TurnAround(_moveDirection.x > 0);
-
+            _stateMachine.ChangeState(BossStateTag.Idle);
             AnimationController.PlayRush();
             StartCoroutine(waitForGetOn());
             //delay translate to rush
@@ -87,7 +87,13 @@ namespace GameCore.Boss
                 _stateMachine.ChangeState(BossStateTag.Rush, onComplete);
             }
         }
-
+        public bool DetactWall(){
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position,_moveDirection,1f,LayerMask.GetMask("Wall")); 
+            Debug.DrawRay(transform.position,_moveDirection,Color.red);
+            return raycastHit2D.collider!=null;
+                
+            
+        }
         public void TurnAround(bool faceToLeft)
         {
             Transform transform = queenAnimation.transform;
