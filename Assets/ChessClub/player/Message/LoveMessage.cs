@@ -8,6 +8,7 @@ namespace player
     public class LoveMessage : MonoBehaviour
     {
         private Rigidbody2D _rigidbody2D;
+        private Collider2D _collider2D;
         private HpManager _hpManager;
         private PlayerData _playerData;
         private Counter _existCounter;
@@ -15,6 +16,7 @@ namespace player
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _collider2D = GetComponent<Collider2D>();
         }
 
         private void FixedUpdate()
@@ -48,6 +50,7 @@ namespace player
             Debug.Log("Message hit");
             if (other.transform.CompareTag("women"))
             {
+                _collider2D.isTrigger = true;
                 _hpManager.Damage(other.gameObject, _playerData.strength);
                 _existCounter.Reset();
             }

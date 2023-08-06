@@ -25,5 +25,6 @@ namespace utils
         public float focusScaleCameraTime;
         public float notFocusScaleCameraTime;
         public float shootDelay;
+        public float heartInitScale;
     }
 }

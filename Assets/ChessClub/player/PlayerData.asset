@@ -21,10 +21,12 @@ MonoBehaviour:
   rollSpeed: 10
   walkSpeed: 2
   strength: 10
-  messageExistTime: 0.2
+  messageExistTime: 10
   focusCameraSize: 7
   noFocusCameraSize: 5
   cameraFollowTime: 0.2
   dashDirKeyTime: 0.2
   focusScaleCameraTime: 0.15
   notFocusScaleCameraTime: 0.01
+  shootDelay: 1
+  heartInitScale: 0.5
