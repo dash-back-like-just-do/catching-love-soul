@@ -90,9 +90,9 @@ MonoBehaviour:
   awakeCount: 2
   currentState: 0
   changeStateHP:
-  - 70
+  - 150
+  - 100
   - 50
-  - 30
   bossCombatent: {fileID: 7344705558421360394}
   restartDecisionTime: 3
   minDistanceToPlayer: 10
@@ -103,7 +103,7 @@ MonoBehaviour:
   maxRandomMoveTime: 5
   minRandomMoveTime: 2
   rushScale: 4
-  rushSec: 2
+  rushSec: 1
 --- !u!114 &7344705558421360394
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -100,12 +100,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 5
-  duration: 1
+  duration: 0.7
   spriteRenderer: {fileID: 8287533895363272207}
   destoryTime: 2
   awakeTime: 0
   spawnTime: 0.3
   collider2D: {fileID: 9048870838216985993}
+  enabeledCollisionDistance: 0.5
 --- !u!70 &9048870838216985993
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

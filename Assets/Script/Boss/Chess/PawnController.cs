@@ -12,6 +12,7 @@ public class PawnController : Chess {
     [SerializeField] float awakeTime;
     [SerializeField] float spawnTime;
     [SerializeField] Collider2D collider2D;
+    [SerializeField] float enabeledCollisionDistance; 
     public override void OnSpawn(Vector2 diraction)
     {
         if(GameObject.FindWithTag("Player")==null)
@@ -22,11 +23,15 @@ public class PawnController : Chess {
         });
         IEnumerator waitForMoving(){
             yield return new WaitForSeconds(awakeTime);
-            transform.DOJump(player.transform.position,jumpPower,1,duration).OnComplete(OnComplete);
+            transform.DOJump(player.transform.position,jumpPower,1,duration).OnUpdate(()=>{
+                if(Vector2.Distance(player.transform.position,transform.position)<=enabeledCollisionDistance){
+                    collider2D.enabled = true;
+                }
+            }).OnComplete(OnComplete);
         }
     }
     void OnComplete(){
-        collider2D.enabled = true;
+        
         DOTween.ToAlpha(()=>spriteRenderer.color,x=>spriteRenderer.color=x,0,destoryTime).OnUpdate(()=>{
             if(spriteRenderer.color.a<=0.7)
                 collider2D.enabled = false;
