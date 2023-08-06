@@ -11,6 +11,7 @@ public class PawnController : Chess {
     [SerializeField] float destoryTime;
     [SerializeField] float awakeTime;
     [SerializeField] float spawnTime;
+    [SerializeField] Collider2D collider2D;
     public override void OnSpawn(Vector2 diraction)
     {
         if(GameObject.FindWithTag("Player")==null)
@@ -25,7 +26,11 @@ public class PawnController : Chess {
         }
     }
     void OnComplete(){
-        DOTween.ToAlpha(()=>spriteRenderer.color,x=>spriteRenderer.color=x,0,destoryTime).OnComplete(()=>{
+        collider2D.enabled = true;
+        DOTween.ToAlpha(()=>spriteRenderer.color,x=>spriteRenderer.color=x,0,destoryTime).OnUpdate(()=>{
+            if(spriteRenderer.color.a<=0.7)
+                collider2D.enabled = false;
+        }).OnComplete(()=>{
             Destroy(gameObject);
         });
     }

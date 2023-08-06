@@ -105,6 +105,7 @@ MonoBehaviour:
   destoryTime: 2
   awakeTime: 0
   spawnTime: 0.3
+  collider2D: {fileID: 9048870838216985993}
 --- !u!70 &9048870838216985993
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,8 +119,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.045114517}
-  m_Size: {x: 2.36, y: 2.9469948}
+  m_Offset: {x: -0.010971069, y: 0.045114517}
+  m_Size: {x: 0.9335022, y: 2.9469948}
   m_Direction: 0
 --- !u!114 &5967126864278007884
 MonoBehaviour:
