@@ -13,6 +13,8 @@ public class PawnController : Chess {
     [SerializeField] float spawnTime;
     public override void OnSpawn(Vector2 diraction)
     {
+        if(GameObject.FindWithTag("Player")==null)
+            Debug.Log("[BossAI]: could not find player tag");
         GameObject player =  GameObject.FindWithTag("Player");
         SpawnAnim(()=>{
             StartCoroutine(waitForMoving());

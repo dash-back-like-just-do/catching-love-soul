@@ -7,11 +7,21 @@ namespace GameCore.Boss
     public class BossAIController : MonoBehaviour {
         
         IBossController bossController;
+        [SerializeField] float awakeCount = 2;
         [SerializeField] int currentState = 0;
-        [SerializeField] Transform player;
+        Transform player;
         private void Start() {
             bossController = GetComponent<BossController>();
-            
+            if(GameObject.FindWithTag("Player")==null)
+                Debug.Log("[BossAI]: could not find player tag");
+            player = GameObject.FindWithTag("Player").transform;
+            StartCoroutine(waitForAwake());
+
+            IEnumerator waitForAwake(){
+                yield return new WaitForSeconds(awakeCount);
+                currentState = 1;
+                MakeDecision();
+            }
         }
         private void Update() {
             
