@@ -20,8 +20,9 @@ namespace utils
 
         public float focusCameraSize;
         public float noFocusCameraSize;
-        public float scaleCameraTime;
         public float cameraFollowTime;
         public float dashDirKeyTime;
+        public float focusScaleCameraTime;
+        public float notFocusScaleCameraTime;
     }
 }

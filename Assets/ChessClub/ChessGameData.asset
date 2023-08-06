@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: ChessGameData
   m_EditorClassIdentifier: 
   playerInitPosition: {x: 0, y: 0}
+  playerInitHp: 100
   bossInitPosition: {x: 0, y: 5}
+  bossInitHp: 200
+  mapCenter: {x: 0, y: 0}
+  mapSize: {x: 40.96, y: 40.96}
+  wallWidth: 20

@@ -255,3 +255,6 @@ MonoBehaviour:
   bossPrefab: {fileID: 2280206855653853242, guid: d81f1441b1dc65b48859cdeb783c52f1, type: 3}
   gameData: {fileID: 11400000, guid: 68864b38ba5cffcacb1885332c23a7ce, type: 2}
   mapPrefab: {fileID: 6429023874424608194, guid: 1074a5154cd83208ebfc896d93dfd48e, type: 3}
+  wallPrefab: {fileID: 3902251716121207819, guid: 984ad55385c34e838b573f5ed7ec70f0, type: 3}
+  walls: []
+  udlr: []
