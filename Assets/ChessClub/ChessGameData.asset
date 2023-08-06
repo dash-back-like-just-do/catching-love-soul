@@ -18,4 +18,4 @@ MonoBehaviour:
   bossInitHp: 200
   mapCenter: {x: 0, y: 0}
   mapSize: {x: 40.96, y: 40.96}
-  wallWidth: 20
+  wallWidth: 21.76
